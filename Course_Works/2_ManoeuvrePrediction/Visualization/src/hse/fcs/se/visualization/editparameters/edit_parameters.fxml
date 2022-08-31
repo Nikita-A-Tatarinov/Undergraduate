@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hse.fcs.se.visualization.editparameters.EditParametersController">
+    <Text fx:id="xText" text="x:" disable="true"
+          AnchorPane.topAnchor="35" AnchorPane.leftAnchor="20"/>
+    <Text fx:id="yText" text="y:" disable="true"
+          AnchorPane.topAnchor="65" AnchorPane.leftAnchor="20"/>
+    <Text fx:id="widthText" text="width:" disable="true"
+          AnchorPane.topAnchor="95" AnchorPane.leftAnchor="20"/>
+    <Text fx:id="lengthText" text="length:" disable="true"
+          AnchorPane.topAnchor="125" AnchorPane.leftAnchor="20"/>
+    <Text fx:id="xVelocityText" text="xVelocity:" disable="true"
+          AnchorPane.topAnchor="155" AnchorPane.leftAnchor="20"/>
+    <Text fx:id="yVelocityText" text="yVelocity:" disable="true"
+          AnchorPane.topAnchor="185" AnchorPane.leftAnchor="20"/>
+    <Text fx:id="xAccelerationText" text="xAcceleration:" disable="true"
+          AnchorPane.topAnchor="215" AnchorPane.leftAnchor="20"/>
+    <Text fx:id="yAccelerationText" text="yAcceleration:" disable="true"
+          AnchorPane.topAnchor="245" AnchorPane.leftAnchor="20"/>
+    <Text fx:id="headingText" text="heading:" disable="true"
+          AnchorPane.topAnchor="275" AnchorPane.leftAnchor="20"/>
+    <TextField fx:id="xTextField" minWidth="200" maxWidth="200"
+               AnchorPane.topAnchor="30" AnchorPane.leftAnchor="160"/>
+    <TextField fx:id="yTextField" minWidth="200" maxWidth="200"
+               AnchorPane.topAnchor="60" AnchorPane.leftAnchor="160"/>
+    <TextField fx:id="widthTextField" minWidth="200" maxWidth="200"
+               AnchorPane.topAnchor="90" AnchorPane.leftAnchor="160"/>
+    <TextField fx:id="lengthTextField" minWidth="200" maxWidth="200"
+               AnchorPane.topAnchor="120" AnchorPane.leftAnchor="160"/>
+    <TextField fx:id="xVelocityTextField" minWidth="200" maxWidth="200"
+               AnchorPane.topAnchor="150" AnchorPane.leftAnchor="160"/>
+    <TextField fx:id="yVelocityTextField" minWidth="200" maxWidth="200"
+               AnchorPane.topAnchor="180" AnchorPane.leftAnchor="160"/>
+    <TextField fx:id="xAccelerationTextField" minWidth="200" maxWidth="200"
+               AnchorPane.topAnchor="210" AnchorPane.leftAnchor="160"/>
+    <TextField fx:id="yAccelerationTextField" minWidth="200" maxWidth="200"
+               AnchorPane.topAnchor="240" AnchorPane.leftAnchor="160"/>
+    <TextField fx:id="headingTextField" minWidth="200" maxWidth="200"
+               AnchorPane.topAnchor="270" AnchorPane.leftAnchor="160"/>
+    <Text fx:id="xHintText" text="x:" disable="true"
+          AnchorPane.topAnchor="35" AnchorPane.leftAnchor="370"/>
+    <Text fx:id="yHintText" text="y:" disable="true"
+          AnchorPane.topAnchor="65" AnchorPane.leftAnchor="370"/>
+    <Text fx:id="widthHintText" text="width:" disable="true"
+          AnchorPane.topAnchor="95" AnchorPane.leftAnchor="370"/>
+    <Text fx:id="lengthHintText" text="length:" disable="true"
+          AnchorPane.topAnchor="125" AnchorPane.leftAnchor="370"/>
+    <Text fx:id="xVelocityHintText" text="xVelocity:" disable="true"
+          AnchorPane.topAnchor="155" AnchorPane.leftAnchor="370"/>
+    <Text fx:id="yVelocityHintText" text="yVelocity:" disable="true"
+          AnchorPane.topAnchor="185" AnchorPane.leftAnchor="370"/>
+    <Text fx:id="xAccelerationHintText" text="xAcceleration:" disable="true"
+          AnchorPane.topAnchor="215" AnchorPane.leftAnchor="370"/>
+    <Text fx:id="yAccelerationHintText" text="yAcceleration:" disable="true"
+          AnchorPane.topAnchor="245" AnchorPane.leftAnchor="370"/>
+    <Text fx:id="headingHintText" text="heading:" disable="true"
+          AnchorPane.topAnchor="275" AnchorPane.leftAnchor="370"/>
+    <Button fx:id="submitButton" text="Submit changes" onAction="#submitButtonOnAction"
+            AnchorPane.topAnchor="300" AnchorPane.leftAnchor="20"/>
+</AnchorPane>

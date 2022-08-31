@@ -1,0 +1,60 @@
+   _______'s Razor: The Cutting Edge for Parser Technology      Jonathan P
+	expression
+	construct
+	Occam
+	lookahead
+
+   Occam's Razor: The Cutting Edge for _______ Technology      Jonathan P
+	Parser
+	expression
+	efficient
+	like
+
+   Occam's Razor: The Cutting Edge for Parser _______      Jonathan P
+	description
+	Technology
+	make
+	parsing
+
+ Breuer y      June 1992      Abstract      _______ is well established in the compiler-compiler field, but is   beginning to show its age
+	shift
+	Yacc
+	need
+	automaton
+
+ Breuer y      June 1992      Abstract      Yacc is _______ established in the compiler-compiler field, but is   beginning to show its age
+	two
+	lex
+	occam
+	well
+
+ Breuer y      June 1992      Abstract      Yacc is well established in the _______-compiler field, but is   beginning to show its age
+	compiler
+	time
+	token
+	special
+
+ Breuer y      June 1992      Abstract      Yacc is well established in the _______-compiler field, but is   beginning to show its age
+	required
+	compiler
+	using
+	grammar
+
+ _______ is a new   compiler-compiler tool that is much more versatile than yacc, whilst   retaining efficiency of operation on modern computers
+	possible
+	cut
+	Precc
+	directly
+
+ Precc is a new   _______-compiler tool that is much more versatile than yacc, whilst   retaining efficiency of operation on modern computers
+	definition
+	cannot
+	compiler
+	lexer
+
+ Precc is a new   _______-compiler tool that is much more versatile than yacc, whilst   retaining efficiency of operation on modern computers
+	figure
+	default
+	compiler
+	required
+

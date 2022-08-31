@@ -1,0 +1,257 @@
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane fx:id="visualizationAnchorPane" fx:controller="hse.fcs.se.visualization.VisualizationController"
+            xmlns:fx="http://javafx.com/fxml">
+    <MenuBar fx:id="mapChoiceMenuBar" style="-fx-padding: 0"
+             AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0"
+             maxHeight="30" minHeight="30" maxWidth="150" minWidth="150">
+        <Menu fx:id="datasetChoiceMenu" text="inD" style="-fx-pref-width: 90">
+            <MenuItem fx:id="inDChoiceMenuItem" text="inD" onAction="#inDChoiceMenuItemOnAction"/>
+            <MenuItem fx:id="rounDChoiceMenuItem" text="rounD" onAction="#rounDChoiceMenuItemOnAction"/>
+        </Menu>
+        <Menu fx:id="fileNumberChoiceMenu" style="-fx-pref-width: 60">
+        </Menu>
+    </MenuBar>
+    <MenuBar fx:id="modeChoiceMenuBar" style="-fx-padding: 0"
+             AnchorPane.leftAnchor="0" AnchorPane.topAnchor="30"
+             maxHeight="30" minHeight="30" maxWidth="90" minWidth="90">
+        <Menu fx:id="modeChoiceMenu" text="playback" style="-fx-pref-width: 90">
+            <MenuItem fx:id="playbackModeMenuItem" text="playback" onAction="#playbackModeMenuItemOnAction"/>
+            <MenuItem fx:id="customModeMenuItem" text="custom" onAction="#customModeMenuItemOnAction"/>
+            <MenuItem fx:id="extendedModeMenuItem" text="extended" onAction="#extendedModeMenuItemOnAction"/>
+        </Menu>
+    </MenuBar>
+    <Label fx:id="mapResizingLabel" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="60" text="Scale:"
+           maxHeight="30" minHeight="30" maxWidth="90" minWidth="90"/>
+    <MenuBar fx:id="mapResizingMenuBar" style="-fx-padding: 0"
+             AnchorPane.leftAnchor="90" AnchorPane.topAnchor="60"
+             maxHeight="30" minHeight="30" maxWidth="60" minWidth="60">
+        <Menu fx:id="mapResizingMenu" text="x1" style="-fx-pref-width: 60">
+            <MenuItem fx:id="x1MapSizeMenuItem" text="x1" onAction="#x1MapSizeMenuItemOnAction"/>
+            <MenuItem fx:id="x1and5MapSizeMenuItem" text="x1.5" onAction="#x1and5MapSizeMenuItemOnAction"/>
+            <MenuItem fx:id="x2MapSizeMenuItem" text="x2" onAction="#x2MapSizeMenuItemOnAction"/>
+        </Menu>
+    </MenuBar>
+    <Button fx:id="downloadButton" onAction="#downloadButtonOnAction" mnemonicParsing="false"
+            AnchorPane.leftAnchor="90" AnchorPane.topAnchor="30"
+            maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+        <graphic>
+            <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@icons/download_icon.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="uploadButton" onAction="#uploadButtonOnAction" mnemonicParsing="false"
+            AnchorPane.leftAnchor="120" AnchorPane.topAnchor="30"
+            maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+        <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@icons/upload_icon.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <AnchorPane fx:id="playbackModeControlsAnchorPane"
+                AnchorPane.leftAnchor="0" AnchorPane.topAnchor="90">
+        <Button fx:id="fastBackwardButton" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0"
+                onAction="#fastBackwardButtonOnAction" disable="true"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/fast_backward_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="backwardButton" AnchorPane.leftAnchor="30" AnchorPane.topAnchor="0"
+                onAction="#backwardButtonOnAction" disable="true"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/backward_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="playPauseButton" AnchorPane.leftAnchor="60" AnchorPane.topAnchor="0"
+                onAction="#playPauseButtonOnAction"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/play_pause_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="forwardButton" AnchorPane.leftAnchor="90" AnchorPane.topAnchor="0"
+                onAction="#forwardButtonOnAction"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/forward_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="fastForwardButton" AnchorPane.leftAnchor="120" AnchorPane.topAnchor="0"
+                onAction="#fastForwardButtonOnAction"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/fast_forward_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Label fx:id="currentFrameLabel" text="1" alignment="CENTER"
+               AnchorPane.leftAnchor="0" AnchorPane.topAnchor="30"
+               maxHeight="30" minHeight="30" maxWidth="150" minWidth="150"/>
+        <Slider fx:id="currentFrameSlider" onDragEntered="#currentFrameSliderOnDragEntered"
+                onDragDone="#currentFrameSliderOnDragDone"
+                AnchorPane.leftAnchor="0" AnchorPane.topAnchor="45" prefHeight="30" prefWidth="150"/>
+        <Label fx:id="speedLabel" text="Speed:"
+               AnchorPane.leftAnchor="0" AnchorPane.topAnchor="75"
+               maxHeight="30" minHeight="30" maxWidth="90" minWidth="90"/>
+        <MenuBar fx:id="speedMenuBar" style="-fx-padding: 0"
+                 AnchorPane.leftAnchor="90" AnchorPane.topAnchor="75"
+                 maxHeight="30" minHeight="30" maxWidth="60" minWidth="60">
+            <Menu fx:id="speedMenu" text="x1" style="-fx-pref-width: 60">
+                <MenuItem fx:id="x1SpeedMenuItem" text="x1" onAction="#x1SpeedMenuItemOnAction"/>
+                <MenuItem fx:id="x2SpeedMenuItem" text="x2" onAction="#x2SpeedMenuItemOnAction"/>
+                <MenuItem fx:id="x5SpeedMenuItem" text="x5" onAction="#x5SpeedMenuItemOnAction"/>
+                <MenuItem fx:id="x10SpeedMenuItem" text="x10" onAction="#x10SpeedMenuItemOnAction"/>
+                <MenuItem fx:id="x50SpeedMenuItem" text="x50" onAction="#x50SpeedMenuItemOnAction"/>
+            </Menu>
+        </MenuBar>
+    </AnchorPane>
+    <AnchorPane fx:id="customModeControlsAnchorPane" disable="true" visible="false"
+                AnchorPane.leftAnchor="0" AnchorPane.topAnchor="90">
+        <Button fx:id="addCarButton" onAction="#addCarButtonOnAction"
+                AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/car_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="addTruckButton" onAction="#addTruckButtonOnAction"
+                AnchorPane.leftAnchor="30" AnchorPane.topAnchor="0"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/truck_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="addPedestrianButton" onAction="#addPedestrianButtonOnAction"
+                AnchorPane.leftAnchor="60" AnchorPane.topAnchor="0"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/pedestrian_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="addBicycleButton" onAction="#addBicycleButtonOnAction"
+                AnchorPane.leftAnchor="90" AnchorPane.topAnchor="0"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/bicycle_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="addMotorcycleButton" onAction="#addMotorcycleButtonOnAction"
+                AnchorPane.leftAnchor="0" AnchorPane.topAnchor="30"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/motorcycle_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="addVanButton" onAction="#addVanButtonOnAction"
+                AnchorPane.leftAnchor="30" AnchorPane.topAnchor="30"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/van_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="addBusButton" onAction="#addBusButtonOnAction"
+                AnchorPane.leftAnchor="60" AnchorPane.topAnchor="30"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/bus_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="addTrailerButton" onAction="#addTrailerButtonOnAction"
+                AnchorPane.leftAnchor="90" AnchorPane.topAnchor="30"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/trailer_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="handToolButton" onAction="#handToolButtonOnAction"
+                AnchorPane.leftAnchor="0" AnchorPane.topAnchor="60"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/hand_tool_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="selectionButton" onAction="#selectionButtonOnAction" style="-fx-background-color: #ADFF2F"
+                AnchorPane.leftAnchor="30" AnchorPane.topAnchor="60"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/selection_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="modificationButton" disable="true" onAction="#modificationButtonOnAction"
+                AnchorPane.leftAnchor="60" AnchorPane.topAnchor="60"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/modification_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button fx:id="deletionButton" disable="true" onAction="#deletionButtonOnAction"
+                AnchorPane.leftAnchor="90" AnchorPane.topAnchor="60"
+                maxHeight="30" minHeight="30" maxWidth="30" minWidth="30">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@icons/deletion_icon.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </AnchorPane>
+    <ImageView fx:id="roadUsersKeywordImageView" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="195"
+               pickOnBounds="true" preserveRatio="true">
+        <Image url="@keywords/road_users_keyword.png"/>
+    </ImageView>
+    <ImageView fx:id="manoeuvreKeywordImageView"
+               AnchorPane.leftAnchor="0" AnchorPane.topAnchor="520"
+               pickOnBounds="true" preserveRatio="true">
+        <Image url="@keywords/manoeuvre_keyword.png"/>
+    </ImageView>
+    <ScrollPane fx:id="mapScrollPane" pannable="true" style="-fx-background-color: #000"
+                AnchorPane.leftAnchor="150" AnchorPane.topAnchor="0"
+                AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+        <VBox alignment="CENTER" style="-fx-background-color: #000">
+            <AnchorPane fx:id="mapAnchorPane" style="-fx-background-color: #000"/>
+        </VBox>
+    </ScrollPane>
+</AnchorPane>

@@ -1,0 +1,1 @@
+java --module-path lib/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics -jar Visualization.jar
