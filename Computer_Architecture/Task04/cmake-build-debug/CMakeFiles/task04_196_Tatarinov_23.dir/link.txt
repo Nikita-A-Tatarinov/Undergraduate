@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/task04_196_Tatarinov_23.dir/main.cpp.o  -o task04_196_Tatarinov_23 

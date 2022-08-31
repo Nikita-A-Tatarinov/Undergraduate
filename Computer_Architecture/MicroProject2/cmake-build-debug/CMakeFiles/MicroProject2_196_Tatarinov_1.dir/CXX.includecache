@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nickyoleary/CLionProjects/MicroProject2_196_Tatarinov_1/main.cpp
+iostream
+-
+random
+-
+ctime
+-
+chrono
+-
+thread
+-
+mutex
+-
+

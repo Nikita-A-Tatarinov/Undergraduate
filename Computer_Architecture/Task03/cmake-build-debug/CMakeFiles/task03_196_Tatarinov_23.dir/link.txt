@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/task03_196_Tatarinov_23.dir/main.cpp.o  -o task03_196_Tatarinov_23  -lpthread 

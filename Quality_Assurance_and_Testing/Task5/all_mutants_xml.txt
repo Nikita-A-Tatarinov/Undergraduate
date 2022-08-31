@@ -1,0 +1,268 @@
+<?xml version="1.0" ?>
+<testsuites failures="10" errors="0" tests="48" disabled="0" time="0.0">
+        <testsuite name="mutmut" disabled="0" failures="10" errors="0" skipped="0" time="0" tests="48">
+                <testcase name="Mutant #1" file="account.py" line="2">
+                        <system-out>        self.__blocked: bool = False</system-out>
+                </testcase>
+                <testcase name="Mutant #2" file="account.py" line="2">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -1,6 +1,6 @@
+ class Account:
+     def __init__(self):
+-        self.__blocked: bool = False
++        self.__blocked: bool = None
+         self.__bound: int = 1000000
+         self.__balance: int = 0
+         self.__max_credit: int = -1000
+</failure>
+                        <system-out>        self.__blocked: bool = False</system-out>
+                </testcase>
+                <testcase name="Mutant #3" file="account.py" line="3">
+                        <system-out>        self.__bound: int = 1000000</system-out>
+                </testcase>
+                <testcase name="Mutant #4" file="account.py" line="3">
+                        <system-out>        self.__bound: int = 1000000</system-out>
+                </testcase>
+                <testcase name="Mutant #5" file="account.py" line="4">
+                        <system-out>        self.__balance: int = 0</system-out>
+                </testcase>
+                <testcase name="Mutant #6" file="account.py" line="4">
+                        <system-out>        self.__balance: int = 0</system-out>
+                </testcase>
+                <testcase name="Mutant #7" file="account.py" line="5">
+                        <system-out>        self.__max_credit: int = -1000</system-out>
+                </testcase>
+                <testcase name="Mutant #8" file="account.py" line="5">
+                        <system-out>        self.__max_credit: int = -1000</system-out>
+                </testcase>
+                <testcase name="Mutant #9" file="account.py" line="5">
+                        <system-out>        self.__max_credit: int = -1000</system-out>
+                </testcase>
+                <testcase name="Mutant #10" file="account.py" line="9">
+                        <system-out>            return False</system-out>
+                </testcase>
+                <testcase name="Mutant #11" file="account.py" line="10">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -8,7 +8,7 @@
+     def deposit(self, _sum: int) -&gt; bool:
+         if self.__blocked :
+             return False
+-        if _sum &lt; 0 or _sum &gt; self.__bound:
++        if _sum &lt;= 0 or _sum &gt; self.__bound:
+             return False
+         if self.__balance &gt;= self.__bound - _sum:
+             return False
+</failure>
+                        <system-out>        if _sum &lt; 0 or _sum &gt; self.__bound:</system-out>
+                </testcase>
+                <testcase name="Mutant #12" file="account.py" line="10">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -8,7 +8,7 @@
+     def deposit(self, _sum: int) -&gt; bool:
+         if self.__blocked :
+             return False
+-        if _sum &lt; 0 or _sum &gt; self.__bound:
++        if _sum &lt; 1 or _sum &gt; self.__bound:
+             return False
+         if self.__balance &gt;= self.__bound - _sum:
+             return False
+</failure>
+                        <system-out>        if _sum &lt; 0 or _sum &gt; self.__bound:</system-out>
+                </testcase>
+                <testcase name="Mutant #13" file="account.py" line="10">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -8,7 +8,7 @@
+     def deposit(self, _sum: int) -&gt; bool:
+         if self.__blocked :
+             return False
+-        if _sum &lt; 0 or _sum &gt; self.__bound:
++        if _sum &lt; 0 or _sum &gt;= self.__bound:
+             return False
+         if self.__balance &gt;= self.__bound - _sum:
+             return False
+</failure>
+                        <system-out>        if _sum &lt; 0 or _sum &gt; self.__bound:</system-out>
+                </testcase>
+                <testcase name="Mutant #14" file="account.py" line="10">
+                        <system-out>        if _sum &lt; 0 or _sum &gt; self.__bound:</system-out>
+                </testcase>
+                <testcase name="Mutant #15" file="account.py" line="11">
+                        <system-out>            return False</system-out>
+                </testcase>
+                <testcase name="Mutant #16" file="account.py" line="12">
+                        <system-out>        if self.__balance &gt;= self.__bound - _sum:</system-out>
+                </testcase>
+                <testcase name="Mutant #17" file="account.py" line="12">
+                        <system-out>        if self.__balance &gt;= self.__bound - _sum:</system-out>
+                </testcase>
+                <testcase name="Mutant #18" file="account.py" line="13">
+                        <system-out>            return False</system-out>
+                </testcase>
+                <testcase name="Mutant #19" file="account.py" line="14">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -12,7 +12,7 @@
+             return False
+         if self.__balance &gt;= self.__bound - _sum:
+             return False
+-        self.__balance += _sum
++        self.__balance = _sum
+         return True
+ 
+     def withdraw(self, _sum: int) -&gt; bool:
+</failure>
+                        <system-out>        self.__balance += _sum</system-out>
+                </testcase>
+                <testcase name="Mutant #20" file="account.py" line="14">
+                        <system-out>        self.__balance += _sum</system-out>
+                </testcase>
+                <testcase name="Mutant #21" file="account.py" line="15">
+                        <system-out>        return True</system-out>
+                </testcase>
+                <testcase name="Mutant #22" file="account.py" line="19">
+                        <system-out>            return False</system-out>
+                </testcase>
+                <testcase name="Mutant #23" file="account.py" line="20">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -18,7 +18,7 @@
+     def withdraw(self, _sum: int) -&gt; bool:
+         if self.__blocked :
+             return False
+-        if _sum &lt; 0 or _sum &gt; self.__bound:
++        if _sum &lt;= 0 or _sum &gt; self.__bound:
+             return False
+         if self.__balance &lt;= self.__max_credit + _sum:
+             return False
+</failure>
+                        <system-out>        if _sum &lt; 0 or _sum &gt; self.__bound:</system-out>
+                </testcase>
+                <testcase name="Mutant #24" file="account.py" line="20">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -18,7 +18,7 @@
+     def withdraw(self, _sum: int) -&gt; bool:
+         if self.__blocked :
+             return False
+-        if _sum &lt; 0 or _sum &gt; self.__bound:
++        if _sum &lt; 1 or _sum &gt; self.__bound:
+             return False
+         if self.__balance &lt;= self.__max_credit + _sum:
+             return False
+</failure>
+                        <system-out>        if _sum &lt; 0 or _sum &gt; self.__bound:</system-out>
+                </testcase>
+                <testcase name="Mutant #25" file="account.py" line="20">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -18,7 +18,7 @@
+     def withdraw(self, _sum: int) -&gt; bool:
+         if self.__blocked :
+             return False
+-        if _sum &lt; 0 or _sum &gt; self.__bound:
++        if _sum &lt; 0 or _sum &gt;= self.__bound:
+             return False
+         if self.__balance &lt;= self.__max_credit + _sum:
+             return False
+</failure>
+                        <system-out>        if _sum &lt; 0 or _sum &gt; self.__bound:</system-out>
+                </testcase>
+                <testcase name="Mutant #26" file="account.py" line="20">
+                        <system-out>        if _sum &lt; 0 or _sum &gt; self.__bound:</system-out>
+                </testcase>
+                <testcase name="Mutant #27" file="account.py" line="21">
+                        <system-out>            return False</system-out>
+                </testcase>
+                <testcase name="Mutant #28" file="account.py" line="22">
+                        <system-out>        if self.__balance &lt;= self.__max_credit + _sum:</system-out>
+                </testcase>
+                <testcase name="Mutant #29" file="account.py" line="22">
+                        <system-out>        if self.__balance &lt;= self.__max_credit + _sum:</system-out>
+                </testcase>
+                <testcase name="Mutant #30" file="account.py" line="23">
+                        <system-out>            return False</system-out>
+                </testcase>
+                <testcase name="Mutant #31" file="account.py" line="24">
+                        <system-out>        self.__balance -= _sum</system-out>
+                </testcase>
+                <testcase name="Mutant #32" file="account.py" line="24">
+                        <system-out>        self.__balance -= _sum</system-out>
+                </testcase>
+                <testcase name="Mutant #33" file="account.py" line="25">
+                        <system-out>        return True</system-out>
+                </testcase>
+                <testcase name="Mutant #34" file="account.py" line="31">
+                        <system-out>        return -self.__max_credit</system-out>
+                </testcase>
+                <testcase name="Mutant #35" file="account.py" line="37">
+                        <system-out>        self.__blocked = True</system-out>
+                </testcase>
+                <testcase name="Mutant #36" file="account.py" line="37">
+                        <system-out>        self.__blocked = True</system-out>
+                </testcase>
+                <testcase name="Mutant #37" file="account.py" line="40">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -38,7 +38,7 @@
+         self.__blocked = True
+ 
+     def unblock(self) -&gt; bool:
+-        if self.__balance &lt; self.__max_credit:
++        if self.__balance &lt;= self.__max_credit:
+             return False
+         self.__blocked = False
+         return True
+</failure>
+                        <system-out>        if self.__balance &lt; self.__max_credit:</system-out>
+                </testcase>
+                <testcase name="Mutant #38" file="account.py" line="41">
+                        <system-out>            return False</system-out>
+                </testcase>
+                <testcase name="Mutant #39" file="account.py" line="42">
+                        <system-out>        self.__blocked = False</system-out>
+                </testcase>
+                <testcase name="Mutant #40" file="account.py" line="42">
+                        <failure type="failure" message="bad_survived">--- account.py
++++ account.py
+@@ -40,7 +40,7 @@
+     def unblock(self) -&gt; bool:
+         if self.__balance &lt; self.__max_credit:
+             return False
+-        self.__blocked = False
++        self.__blocked = None
+         return True
+ 
+     def set_max_credit(self, mc: int) -&gt; bool:
+</failure>
+                        <system-out>        self.__blocked = False</system-out>
+                </testcase>
+                <testcase name="Mutant #41" file="account.py" line="43">
+                        <system-out>        return True</system-out>
+                </testcase>
+                <testcase name="Mutant #42" file="account.py" line="46">
+                        <system-out>        if not self.__blocked:</system-out>
+                </testcase>
+                <testcase name="Mutant #43" file="account.py" line="47">
+                        <system-out>            return False</system-out>
+                </testcase>
+                <testcase name="Mutant #44" file="account.py" line="48">
+                        <system-out>        if abs(mc) &gt; self.__bound:</system-out>
+                </testcase>
+                <testcase name="Mutant #45" file="account.py" line="49">
+                        <system-out>            return False</system-out>
+                </testcase>
+                <testcase name="Mutant #46" file="account.py" line="50">
+                        <system-out>        self.__max_credit = -mc</system-out>
+                </testcase>
+                <testcase name="Mutant #47" file="account.py" line="50">
+                        <system-out>        self.__max_credit = -mc</system-out>
+                </testcase>
+                <testcase name="Mutant #48" file="account.py" line="51">
+                        <system-out>        return True</system-out>
+                </testcase>
+        </testsuite>
+</testsuites>

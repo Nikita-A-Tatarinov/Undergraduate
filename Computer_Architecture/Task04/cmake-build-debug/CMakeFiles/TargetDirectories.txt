@@ -1,0 +1,3 @@
+/home/nickyoleary/CLionProjects/task04_196_Tatarinov_23/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/nickyoleary/CLionProjects/task04_196_Tatarinov_23/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/nickyoleary/CLionProjects/task04_196_Tatarinov_23/cmake-build-debug/CMakeFiles/task04_196_Tatarinov_23.dir

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nickyoleary/CLionProjects/task04_196_Tatarinov_23/main.cpp
+omp.h
+/home/nickyoleary/CLionProjects/task04_196_Tatarinov_23/omp.h
+iostream
+-
+fstream
+-
+thread
+-
+stack
+-
+condition_variable
+-
+random
+-
+

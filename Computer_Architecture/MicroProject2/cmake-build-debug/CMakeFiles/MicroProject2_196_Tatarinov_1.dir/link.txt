@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/MicroProject2_196_Tatarinov_1.dir/main.cpp.o  -o MicroProject2_196_Tatarinov_1  -lpthread 
