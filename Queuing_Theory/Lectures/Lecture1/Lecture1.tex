@@ -1,0 +1,176 @@
+\documentclass{article}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{5ex}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[dvipsnames]{color}
+\usepackage{colortbl}
+
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{float}
+
+\usepackage{diagbox}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{remark*}{Remark}
+
+\title{\textbf{Лекция 1\\по Теории Массового Обслуживания}}
+\author{\textit{от Татаринова Никиты Алексеевича, БПИ193}}
+\date{\the\year .\twodigits{\the\month}.\twodigits{\the\day}}
+\newcommand\twodigits[1]{%
+   \ifnum#1<10 0#1\else #1\fi
+}
+
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
+\begin{document}
+\maketitle
+\section*{Литература}
+\begin{itemize}
+\item D.Cross, C.M.Harris "Fundamentals of Queuing Theory"
+\end{itemize}
+\section*{Теория массового обслуживания}
+Родилась из нужд телекоммуникационных компаний -- организовать телекоммуникации оптимальным образом. Совмещает теорию вероятностей и исследование операций. 1909г -- датский инженер А.К.Эрланг описал модель появления событий во времени -- "Theory of Probability and Telephone Conversations".\par
+Что интересует?
+\begin{itemize}
+\item частота звонков (или среднее время между звонками) -- интенсивность входящего потока звонков
+\item среднее время на обслуживание звонка -- интенсивность обслуживания
+\item число телефонисток
+\end{itemize}\par
+\subsection*{Модель}
+\[
+\begin{array}{ccccccc}
+ & & & \nearrow & \framebox{канал 1} & \searrow & \\
+ 
+\text{входящий поток заявок} & \rightarrow & \framebox{очередь} & \rightarrow & \vdots & \rightarrow & \text{обслуженные заявки} \\
+
+ & & \downarrow & \searrow & \framebox{канал $ n $} & \nearrow & \\
+ & & \text{отказ}
+\end{array} 
+\]
+\subsection*{Нотация Кендалла}
+Последовательность из нескольких символов и цифр:
+\[ A/B/X/Y/Z \]
+, который характеризуют некоторые особенности системы массового обслуживания.
+\begin{itemize}
+\item $ A $ -- закон распределения времени между поступлением заявок
+\begin{itemize}
+\item $ M $ -- экспоненциальное (беспамятное распределение)
+\item $ E_k / Er_k $ -- распределение Эрланга порядка $ k $
+\item $ D $ -- детерминированное время
+\item $ G $ -- произвольное распределение (отсутствие ограничений)
+\end{itemize}
+\item $ B $ -- закон распределения времени обслуживания (те же обозначения)
+\item $ X $ -- число каналов обслуживания (может быть бесконечным, но нетипично)
+\item $ Y $ -- ёмкость системы -- максимальное число заявок в системе единовременно (может быть бесконечным, но нетипично)
+\item $ Z $ -- дисциплина обслуживания -- показывает, в каком порядке обслуживаются заявки
+\begin{itemize}
+\item $ FCFS / FIFO $ -- First Come First Served
+\item $ LCFS / LIFO $ -- Last Come First Served
+\item $ RSS / SIRO $ -- Random Selection for Service
+\item $ PS $ -- processor sharing (например, 2 канала обслуживают одновременно, но в 2 раза медленнее)
+\item $ PRI $ -- приоритетное обслуживание (заявки разбиваются на разные типы с разными приоритетами)
+\item $ GD $ -- general discipline
+\end{itemize}
+\end{itemize}
+\subsection*{Основные случайные величины, связанные с процессом обслуживания}
+Для числа заявок:
+\begin{equation*}
+\left\{
+\begin{aligned}
+& \underset{\substack{\text{число заявок} \\ \text{в системе}}}{N} \! = \! \underset{\substack{\text{число заявок} \\ \text{в очереди}}}{N_q} \! + \! \underset{\substack{\text{число заявок} \\ \text{на обслуживании}}}{N_s} \\
+& L \! = \! E \big[ N \big] \quad \text{-- среднее число заявок в системе} \\
+& L_q \! = \! E \big[ N_q \big] \quad \text{-- среднее число заявок в очереди} \\
+& L_s \! = \! U \! = \! E \big[ N_s \big] \quad \text{-- коэффициент загрузки мощностей} \\
+\end{aligned}
+\right.
+\end{equation*}\par
+Для времени:
+\begin{equation*}
+\left\{
+\begin{aligned}
+& \underset{\substack{\text{время пребывания} \\ \text{заявки в системе}}}{T} \! = \! \underset{\substack{\text{время ожидания} \\ \text{в очереди}}}{T_q} \! + \! \underset{\substack{\text{время} \\ \text{обслуживания}}}{T_s} \\
+& W \! = \! E \big[ T \big] \quad \text{-- среднее время в системе} \\
+& W_q \! = \! E \big[ T_q \big] \quad \text{-- среднее время ожидания в очереди} \\
+& \mu \! = \! \dfrac{1}{E \big[ N_s \big]} \quad \text{-- интенсивность обслуживания} \\
+\end{aligned}
+\right.
+\end{equation*}\par
+Кроме того:
+\begin{equation*}
+\left\{
+\begin{aligned}
+& \mathbf{P}_{loss} \quad \text{-- вероятность потери} \\
+& \lambda \quad \text{-- интенсивность входящего потока заявок} \\
+& ? \quad \text{-- пропускная способность}
+\end{aligned}
+\right.
+\end{equation*}\par
+\subsection*{Пример}
+Заявки поступают в моменты $ 0,20,40,... $. Время обслуживания равномерное на отрезке $ [14;24] $ минут. Один канал обслуживания. Если заявка поступает, а канал занят, то она получает отказ. Найти вероятность $ P_l(k) $ потери заявки с номером $ k $.
+\[ \mathbf{P}_l(1) \! = \! 0 \]
+\[ \mathbf{P}_l(2) \! = \! \dfrac{24 \! - \! 20}{24 \! - \! 14} \! = \! 0.4 \]
+\[ \mathbf{P}_l(3) \! = \! \big( 1 \! - \! P_l(2) \big) \! \cdot \! 0.4 \! = \! 0.24 \]
+\[ \mathbf{P}_l(4) \! = \! \big( 1 \! - \! P_l(3) \big) \! \cdot \! 0.4 \! = \! 0.304 \]
+\[ \mathbf{P}_l(k) \! = \! \big( 1 \! - \! P_l(k \! - \! 1) \big) \! \cdot \! 0.4 \! \]\par
+График представляет затухающие колебания вокруг некоего значения. Первые этапы называются переходным периодом, дальнейшие - стационарным периодом.
+\section*{Геометрическая интерпретация математического ожидания}
+\begin{equation*}
+\begin{aligned}
+& G_T (t) \, = \, \mathbf{P} \big\{ T \! > \! t \big\} \, = \, 1 \! - \! F_T(t) \qquad & \text{-- дополнительная функция распределения} \\
+& & \text{(complementary cdf)}
+\end{aligned}
+\end{equation*}\par
+Тогда:
+\[ E \big[ T \big] \, = \, \int\limits_0^{+\infty} G_T(t) \! \cdot \! dt \, - \, \int\limits_{-\infty}^0 F_T(t) \! \cdot \! dt \]
+Для неотрицательной СВ $ T $:
+\[ E \big[ T \big] \, = \, \int\limits_0^{+\infty} G_T(t) \! \cdot \! dt \]
+\subsection*{Пример 1}
+Пусть $ T \! \sim \! Exp(\lambda) $, т.е.
+\begin{equation*}
+G_T(t) \, = \, 1 \! - \! F_T(t) \, = \,
+\left\{
+\begin{aligned}
+& 1 & & \quad t \! < \! 0 \\
+& e^{-\lambda t} & & \quad t \! \geqslant \! 0
+\end{aligned}
+\right.
+\end{equation*}\par
+Тогда:
+\[ E \big[ T \big] \, = \, \int\limits_0^{+\infty} e^{-\lambda t} \! \cdot \! dt \, = \, \left. -\dfrac{1}{\lambda} \! \cdot \! e^{-\lambda t} \right|_0^{+\infty} \, = \, 0 \! - \! \left( -\dfrac{1}{\lambda} \right) \, = \, \dfrac{1}{\lambda} \]
+\subsection*{Пример 2}
+Пусть:
+\[ G_T(t) \, = \, 0.7 \! \cdot \! e^{-t} \qquad t \! \geqslant \! 0 \]\par
+Найти:
+\begin{enumerate}
+\item[а)] долю заявок, которым приходится ждать в очереди
+\item[б)] среднее время ожидания
+\item[в)] вероятность, что заявке придётся ждать более 2 минут при условии, что ей придётся ждать
+\end{enumerate}
+\subsubsection*{Решение}
+\begin{enumerate}
+\item[а)]
+\[ \mathbf{P} \big\{ T \! > \! 0 \big\} \, = \, G_T(0) \, = \, 0.7 \]
+\item[б)]
+\[ E \big[ T \big] \, = \, \int\limits_0^{+\infty} 0.7 \! \cdot \! e^{-t} \! \cdot \! dt \, = \, -0.7 \! \cdot \! e^{-t} \Big|_0^{+\infty} \, = \, 0 \! - \! (-0.7) \, = \, 0.7 \]
+\item[в)]
+\[ \mathbf{P} \bigg( \big\{ T \! > \! 2 \, \big\} \Big| \big\{ \, T \! > \! 0 \big\} \bigg) \, = \, \dfrac{\mathbf{P} \bigg( \big\{ T \! > \! 2 \, \big\} \bigcap \big\{ \, T \! > \! 0 \big\} \bigg)}{\mathbf{P} \big\{ T \! > \! 0 \big\}} \, = \, \dfrac{\mathbf{P} \big\{ T \! > \! 2 \big\}}{\mathbf{P} \big\{ T \! > \! 0 \big\}} \, = \, \dfrac{G_T(2)}{G_T(0)} \, = \, e^{-2} \]
+\end{enumerate}
+\end{document}
