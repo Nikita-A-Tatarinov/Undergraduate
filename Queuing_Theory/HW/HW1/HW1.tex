@@ -1,0 +1,120 @@
+\documentclass{article}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{5ex}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[dvipsnames]{color}
+\usepackage{colortbl}
+
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{float}
+
+\usepackage{diagbox}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{remark*}{Remark}
+
+\title{\textbf{ДЗ 1\\по Теории Массового Обслуживания}}
+\author{\textit{от Татаринова Никиты Алексеевича, БПИ193}}
+\date{\the\year .\twodigits{\the\month}.\twodigits{\the\day}}
+\newcommand\twodigits[1]{%
+   \ifnum#1<10 0#1\else #1\fi
+}
+
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
+\begin{document}
+\maketitle
+\section*{Задание 1}
+\subsection*{Условие}
+В столовой посетители обслуживаются на двух кассах, время обслуживания каждого посетителя распределено по закону Эрланга второго порядка и составляет в среднем одну минуту. Покупатели подходят с интенсивностью два человека в минуту, время между покупателями распределено экспоненциально. Очередь к кассам может быть сколь угодно большой.
+Опишите систему нотацией Кендалла.
+\subsection*{Решение}
+Нотация Кендалла имеет вид:
+\[ A/B/X/Y/Z \]
+, где 
+\begin{itemize}
+\item $ A $ -- закон распределения времени между поступлением заявок, то есть $ A \! = \! M $ (экспоненциальное);
+\item $ B $ -- закон распределения времени обслуживания, то есть $ B \! = \! E_2 $ (Эрланга второго порядка);
+\item $ X $ -- число каналов обслуживания, то есть $ X \! = \! 2 $ (две кассы);
+\item $ Y $ -- ёмкость системы (максимальное число заявок в системе единовременно), то есть $ Y \! = \! \infty $ (очередь к кассам может быть сколь угодно большой);
+\item $ Z $ -- дисциплина обслуживания, то есть $ Z \! = \! GD $ (произвольная дисциплина, так как иное не оговорено условием).
+\end{itemize}
+\subsection*{Ответ}
+\[ M/E_2/2/\infty/GD \quad \sim \quad M/E_2/2 \]
+\section*{Задание 2}
+\subsection*{Условие}
+Опираясь на геометрическую интерпретацию, найдите математическое ожидание случайной величины X, если
+\begin{enumerate}
+\item[а)] эта величина имеет геометрическое распределение с параметром $ p \! \in \! (0;1) $, то есть принимает значения $ 0,1,2... $ с вероятностями $ \mathbf{P} \big\{ X \! = \! x \big\} \, = \, {(1 \! - \! p)}^x \! \cdot \! p $
+\item[б)] эта величина имеет функцию распределения
+\begin{equation*}
+F(x) \, = \,
+\left\{
+\begin{aligned}
+& 0 & & \quad x \! < \! 0 \\
+& 1 \! - \! 0.8 \! \cdot \! e^{-x} & & \quad x \! \geqslant \! 0
+\end{aligned}
+\right.
+\end{equation*}
+\end{enumerate}
+\subsection*{Решение}
+Дополнительная функция распределения:
+\[ G_X(x) \, = \, \mathbf{P} \big\{ X \! > \! x \big\} \, = \, 1 \! - \! F_X(x) \]
+Тогда для неотрицательных $ X $:
+\[ E \big[ X \big] \, = \, \int\limits_0^{+\infty} G_X(x) \! \cdot \! dx \]
+\begin{enumerate}
+\item[а)]
+\[ E \big[ X \big] \, = \, \sum\limits_{i=1}^{+\infty} i \! \cdot \! p \! \cdot \! {(1 \! - \! p)}^i \, = \, \sum\limits_{i=1}^{+\infty} (i \! + \! 1) \! \cdot \! p \! \cdot \! {(1 \! - \! p)}^i \, - \, \sum\limits_{i=1}^{+\infty} p \! \cdot \! {(1 \! - \! p)}^i \, = \, p \sum\limits_{i=1}^{+\infty} \dfrac{dq^{i+1}}{dq} \, - \, (1 \! - \! p) \, = \]
+\[ = \, p \! \cdot \! \dfrac{d}{dq} \left( \sum\limits_{i=1}^{+\infty} q^{i+1} \right) \, - \, (1 \! - \! p) \, = \, p \! \cdot \! \dfrac{d}{dq} \left( \dfrac{q^2}{1 \! - \! q} \right) \, - \, (1 \! - \! p) \, = \, p \! \cdot \! \dfrac{2 \! \cdot \! q \! \cdot \! (1 \! - \! q) \! - \! q^2 \! \cdot \! (-1)}{{(1 \! - \! q)}^2} \, - \, (1 \! - \! p) \, = \]
+\[ = \, p \! \cdot \! \dfrac{(2 \! - \! q) \! \cdot \! q}{{(1 \! - \! q)}^2} \, - \, (1 \! - \! p) \, = \, p \! \cdot \! \dfrac{(1 \! + \! p) (1 \! - \! p)}{p^2} \! - \! (1 \! - \! p) \, = \, \dfrac{1 \! - \! p^2}{p} \! + \! p \! - \! 1 \, = \, \dfrac{1}{p} \! - \! 1 \]
+\item[б)]
+\[ E \big[ X \big] \, = \, \int\limits_0^{+\infty} 0.8 \! \cdot \! e^{-x} \! \cdot \! dx \, = \, -0.8 \! \cdot \! e^{-x} \Big|_0^{+\infty} \, = \, 0 \! - \! (-0.8) \, = \, 0.8 \]
+\end{enumerate}
+\subsection*{Ответ}
+\begin{enumerate}
+\item[а)] $ E \big[ X \big] \, = \, \dfrac{1}{p} \! - \! 1 $
+\item[б)] $ E \big[ X \big] \, = \, 0.8 $
+\end{enumerate}
+\section*{Задание 3}
+\subsection*{Условие}
+Consider a system with a single server at which customers arrive with interval times distributed uniformly from $ 0.7 $ to $ 1.2 $ minutes. Each customer needs exactly $ 1 $ min to be serviced. If a customer finds the server busy upon arrival, it leaves without being serviced (it is lost). Let $ \mathbf{P} (k) $ denote the probability that $ k $-th customer is lost. The server is initially unoccupied, so that $ \mathbf{P} (1) \! = \! 0 $.\par
+Calculate $ \mathbf{P} (k) $ for $ k \! = \! 2,3,4 $ and find $ \mathbf{P} (k) $.
+\subsection*{Решение}
+Из условия, $ 1 $-я заявка точно не будет потеряна. Поскольку каждая заявка обслуживается ровно 1 минуту, $ 2 $-я заявка будет потеряна, если придёт через $ [0.7;1] $ минуту после $ 1 $й, то есть:
+\[ \mathbf{P} (2) \! = \! \dfrac{1 \! - \! 0.7}{1.2 \! - \! 0.7} \, = \, 0.6 \]\par
+Далее рассмотрим произвольную $ k $-ю заявку $ \forall k \! \geqslant \! 3 $. Если $ (k \! - \! 1) $-я заявка потеряна, то $ k $-я заявка точно не будет потеряна, так как она придёт минимум через $ 0.7 $ минут после $ (k \! - \! 1) $-й, а $ (k \! - \! 1) $-я заявка пришла минимум через $ 0.7 $ минут после $ (k \! - \! 2) $-й, то есть $ k $-я заявка придёт минимум через $ 1.4 $ минуты после $ (k \! - \! 2) $, в то время как обслуживание любой заявки занимает ровно минуту. Если же $ (k \! - \! 1) $-я заявка не потеряна, то вероятность потери $ k $й рассчитывается так же, как и для $ 2 $й. Таким образом, вероятность потери $ k $-й заявки равна
+\[ \mathbf{P}(k) \, = \, \Big( 1 \! - \! \mathbf{P}(k \! - \! 1) \Big) \! \cdot \! \mathbf{P}(2) \]
+Для $ 3 $-й заявки:
+\[ \mathbf{P}(3) \, = \, (1 \! - \! 0.6) \! \cdot \! 0.6 \, = \, 0.24 \]
+Для $ 2 $-й заявки:
+\[ \mathbf{P}(4) \, = \, (1 \! - \! 0.24) \! \cdot \! 0.6 \, = \, 0.456 \]
+\subsection*{Ответ}
+\begin{equation*}
+\left\{
+\begin{aligned}
+& \mathbf{P}(2) \! = \! 0.6 \\
+& \mathbf{P}(3) \! = \! 0.24 \\
+& \mathbf{P}(4) \! = \! 0.456 \\
+& \mathbf{P}(k) \! = \! \Big( 1 \! - \! \mathbf{P}(k \! - \! 1) \Big) \! \cdot \! \mathbf{P} (2) \quad \forall k \! \geqslant \! 3 \\
+\end{aligned}
+\right.
+\end{equation*}
+\end{document}
