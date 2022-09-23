@@ -1,0 +1,122 @@
+\documentclass{article}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{5ex}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[dvipsnames]{color}
+\usepackage{colortbl}
+
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{float}
+
+\usepackage{diagbox}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{remark*}{Remark}
+
+\title{\textbf{Лекция 2\\по Теории Массового Обслуживания}}
+\author{\textit{от Татаринова Никиты Алексеевича, БПИ193}}
+\date{\the\year .\twodigits{\the\month}.\twodigits{\the\day}}
+\newcommand\twodigits[1]{%
+   \ifnum#1<10 0#1\else #1\fi
+}
+
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
+\begin{document}
+\maketitle
+\section*{Введение в дифференциальные и разностные уравнения}
+\subsection*{Примеры разностных уравнений}
+\begin{equation*}
+\left\{
+\begin{aligned}
+& P(t) \quad \text{-- численность омёб в момент } t \\
+& P(t) \, = \, 2 \! \cdot \! P(t) \\
+& P(0) \! = \! 100
+\end{aligned}
+\right| \quad \text{разностное уравнение 1го порядка} 
+\end{equation*}
+\[ y(t) \, = \, 2 \! - \! y(t \! - \! 1) \! \! + \! 0.5 \! \cdot \! y(t \! - \! 2) \quad \text{разностное уравнение 2го порядка} \]\par
+Это было в школе (1):
+\[ y(k) \, = \, y(k \! - \! 1) \! + \! b \quad \rightarrow \quad y(k) \, = \, y(0) \! + \! k \! \cdot \! b \]
+\[ y(k) \, = \, C \! + \! k \! \cdot \! b \quad \text{-- общее решение разностного уравнения} \]
+\[ y(k) \, = \, 3 \! + \! k \! \cdot \! b \quad \text{-- частное решение, удовлетворяющее условию } y(0) \! = \! 3 \]\par
+Это было в школе (2):
+\[ y(k) \, = \, a \! \cdot \! y(k \! - \! 1) \quad \rightarrow \quad y(k) \, = \, a^k \! \cdot \! y(0) \]
+\[ y(k) \, = \, C \! \cdot \! a^k \quad \text{-- общее решение разностного уравнения} \]
+Этого в школе не было, но сводится:
+\[ y(k) \, = \, a \! \cdot \! y(k \! - \! 1) \! + \! b \quad \rightarrow \quad y(k) \, = \, a^k \! \cdot \! y(0) + b \! \cdot \! \dfrac{a^k \! - \! 1}{a \! - \! 1} \]
+\[ y(k) \, = \, C \! \cdot \! a^k \! + \! b \! \cdot \! \dfrac{a^k \! - \! 1}{a \! - \! 1} \quad \text{-- общее решение разностного уравнения} \]
+При $ |a| \! < \! 0 $:
+\[ a^k \, \underset{k \rightarrow +\infty}{\longrightarrow} 0 \]
+\[ y(k) \, \longrightarrow \, \dfrac{b}{1 \! - \! a}  \]
+При $ |a| \! > \! 0 $:
+\[ \nexists \lim\limits_{k \rightarrow +\infty} y(k) \]
+При $ |a| \! = \! 1 $?\par
+Стационарное решение:
+\[ y(k) \, = \, y(k \! - \! 1) \, = \, y(k \! - \! 2) \, = \, ... \]
+\subsection*{Примеры дифференциальных уравнений}
+\[ \dfrac{dy}{dx} \, = \, y \! + \! 3 \]
+\[ y \! \cdot \! \dfrac{dy}{dx} \, = \, 50 \! \cdot \! x^3 \]
+\[ x \! \cdot \! \dfrac{dy}{dx} \! - \! 2y \, = \, 2 \! \cdot \! x^4 \]\par
+Пример решения:
+\[ \dfrac{dy}{dx} \, = \, 2 \! \cdot \! x \]
+\[ \int \dfrac{dy}{dx} \! \cdot \! dx \, = \, \int 2 \! \cdot \! x \! \cdot \! dx \! + \! C \]
+\[ y \, = \, x^2 \! + \! C \quad \text{-- общее решение дифференциального уравнения} \]
+Начальное условие $ y(0) \! = \! 12 $:
+\[ y(0) \, = \, C \quad \rightarrow \quad C \! = \! 12 \]
+\[ y \! = \! x^2 \! + \! 12 \quad \text{-- частное решение дифференциального уравнения} \]\par
+Школьный пример:
+\begin{equation*}
+\left\{
+\begin{aligned}
+& y(t) \quad \text{-- высота шарика в момент } t \\
+& y(0) \, = \, 50 \\
+& \overset{\cdot}{y}(0) \, = \, 0 \\
+& \overset{\cdot \cdot}{y} \, = \, -9.81
+\end{aligned}
+\right.
+\end{equation*}
+Ищем скорость:
+\[ \overset{\cdot}{y} \, = \, \int \overset{\cdot \cdot}{y} \! \cdot \! dt \, + \, C \, = \, \int (-9.81) \! \cdot \! dt \, + \, C \, = \, (-9.81) \! \cdot \! t \, + \, C \]
+Из начальных условий:
+\[ 0 \, = \, \overset{\cdot}{y}(0) \, = \, (-9.81) \! \cdot \! 0 \! + \! C \, = \, C \]
+Ищем высоту:
+\[ y \, = \, \int \overset{\cdot}{y} \! \cdot \! dt \, + \, C \, = \, \int (-9.81) \! \cdot \! t \! \cdot \! dt \, + \, C \, = \, \left( -\dfrac{9.81}{2} \right) \! \cdot \! t^2 \, + \, C \]
+Из начальных условий:
+\[ 50 \, = \, y(0) \, = \left( -\dfrac{9.81}{2} \right) \! \cdot \! 0^2 \, + \, C \, = \, C \]
+Частное решение:
+\[ y(t) \, = \, \left( -\dfrac{9.81}{2} \right) \! \cdot \! t^2 \! + \! 50 \]
+\subsection*{Дифференциальные уравнения с разделяющимися переменными}
+\[ \dfrac{dy}{dx} \! \cdot \! \varphi (y) \, = \, f(x) \]\par
+Схема решения:
+\[ \varphi(y) \! \cdot \! dy \, = \, f(x) \! \cdot \! dx \]
+\[ \int \varphi (y) \! \cdot \! dy \, = \, \int f(x) \! \cdot \! dx \, + \, C \]
+\subsection*{Линейное дифференциальное уравнение (метод вариации произвольной постоянной)}
+\[ \dfrac{dy}{dx} \! + \! a(x) \! \cdot \! y \, = \, f(x) \]
+Интегрирующий множитель:
+\[ u(x) \, = \, e^{\int a(x) \cdot dx} \]
+Домножаем:
+\[ \dfrac{dy}{dx} \! \cdot \! u(x) \! + \! a(x) \! \cdot \! u(x) \! \cdot \! y \, = \, f(x) \! \cdot \! u(x) \]
+Пусть $ g(x) \, = \, y(x) \! \cdot \! u(x) $. Тогда:
+\[ \dfrac{dg}{dx} \, = \, f(x) \! \cdot \! u(x) \]
+\[ g(x) \, = \, \int dg \, = \, \int f(x) \! \cdot \! u(x) \! \cdot \! dx \, + \, C \]
+\[ y \, = \, \dfrac{g(x)}{u(x)} \]
+\end{document}

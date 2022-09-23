@@ -1,0 +1,173 @@
+\documentclass{article}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{5ex}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[dvipsnames]{color}
+\usepackage{colortbl}
+
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{float}
+
+\usepackage{diagbox}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{remark*}{Remark}
+
+\title{\textbf{Семинар 3\\по Теории Массового Обслуживания}}
+\author{\textit{от Татаринова Никиты Алексеевича, БПИ193}}
+\date{\the\year .\twodigits{\the\month}.\twodigits{\the\day}}
+\newcommand\twodigits[1]{%
+   \ifnum#1<10 0#1\else #1\fi
+}
+
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
+\begin{document}
+\maketitle
+\section*{Задание 1}
+\subsection*{Условие}
+Пусть $ X $ - число событий за время $ [0;1] $ в пуассоновском потоке с интенсивностью $ \lambda $, а $ Y $ -- число событий в том же потоке за время $ [0;10] $. Найдите $ Cov(X;Y) $ и $ Corr(X,Y) $.
+\subsection*{Решение}
+Так как $ X $ и $ Y $ находятся в одном потоке, а интервалы времени равны $ 1 $ и $ 10 $ соответственно, то величины имеют распределения:
+\begin{equation*}
+\left\{
+\begin{aligned}
+& X \! \sim \! Pois(\lambda) \\
+& Y \! \sim \! Pois(10 \! \cdot \! \lambda) \\
+\end{aligned}
+\right.
+\end{equation*}\par
+Пусть $ Z $ -- число событий за время $ [1;10] $ в том же потоке. Тогда:
+\[ Y \, = \, X \! + \! Z \]
+, причём $ X $ и $ Z $ независимы в силу предпосылки об отсутствии последействия. Значит:
+\[ Cov(X;Y) \, = \, Cov(X;X \! + \! Z) \, = \, Cov(X;X) \! + \! Cov(X;Z) \, = \, D[X] \! + \! 0 \, = \, \lambda \]
+\[ Corr(X;Y) \, = \, \dfrac{Cov(X;Y)}{\sqrt{D[X] \! \cdot \! D[Y]}} \, = \, \dfrac{\lambda}{\sqrt{\lambda \! \cdot \! 10 \lambda}} \, = \, \dfrac{\sqrt{10}}{10} \]
+\subsection*{Ответ}
+\[ Cov(X;Y) \, = \, \lambda \]
+\[ Corr(X;Y) \, = \, \dfrac{\sqrt{10}}{10} \]
+\section*{Задание 2}
+\subsection*{Условие}
+Пусть $ X \, \sim \, Pois(0.8) $.
+\begin{enumerate}
+\item[а)] Найдите $ \mathbf{P} \big\{ X \! \geqslant \! 1 \big\} $.
+\item[б)] Что больше -- $ \mathbf{P} \big\{ \text{чётные } X \big\} $ или $ \mathbf{P} \big\{ \text{нечётные } X \big\} $?
+\end{enumerate}
+\subsection*{Решение}
+\begin{enumerate}
+\item[а)]
+\[ \mathbf{P} \big\{ X \! \geqslant \! 1 \big\} \, = \, 1 \! - \! \mathbf{P} \big\{ X \! = \! 0 \big\} \, = \, 1 \! - \! \dfrac{0.8^0}{0!} \! \cdot \! e^{-0.8} \, = \, 1 \! - \! e^{-0.8}  \]
+\item[б)]
+\end{enumerate}
+\subsection*{Ответ}
+\begin{enumerate}
+\item[а)] $ \mathbf{P} \big\{ X \! \geqslant \! 1 \big\} \, = \, 1 \! - \! e^{-0.8} $
+\item[б)]
+\end{enumerate}
+\section*{Задание 3}
+\subsection*{Условие}
+Запросы поступают пуассоновским потоком с интенсивностью $ 3 $ в секунду. Обработка каждого запроса занимает ровно секунду.
+\begin{enumerate}
+\item[а)] Какова вероятность, что к моменту $ t \! = \! 2 $ ни один запрос не будет обработан?
+\item[б)] За время $ [0;2] $ поступило $ 5 $ запросов. Какова вероятность, что не один из них не будет обработан?
+\end{enumerate}
+\subsection*{Решение}
+\begin{itemize}
+\item[а)] Вероятность того, что за $ t $ минут ни один запрос не будет обработан, равна вероятности того, что ни один запрос не поступит за $ (t \! - \! 1) $ минут.
+\[ X \, \sim \, Pois(\lambda \! \cdot \! t) \]
+\[ \mathbf{P} \big\{ X \! = \! 0 \big\} \, = \, e^{-\lambda \cdot t} \, = \, e^{-3} \]
+\item[б)] Вероятность того, что ни один из $ n $ запросов, поступивших в систему в течение $ t $ минут, не будет обработан, равна вероятности того, что за $ (t \! - \! 1) $ минут в систему не поступил ни один запрос, при условии, что за $ t $ минут в систему поступило $ 5 $ запросов.
+\begin{equation*}
+\left\{
+\begin{aligned}
+& X \, \sim \, Pois \big( \lambda \! \cdot \! (t \! - \! 1) \big) & & \quad \text{-- количество запросов в системе в промежутке [0;t-1]} \\
+& Y \, \sim \, Pois \big( \lambda \! \cdot \! t \big) & & \quad \text{-- количество запросов в системе в промежутке [0;t]} \\
+& Z \, \sim \, Pois \big( \lambda \big) & & \quad \text{-- количество запросов в системе в промежутке [t-1;t]} \\
+\end{aligned}
+\right.
+\end{equation*}
+\[ \mathbf{P} \bigg( \big\{ X \! = \! 0 \big\} \big| \big\{ Y \! = \! n \big\} \bigg) \, = \, \dfrac{\mathbf{P} \bigg( \big\{ X \! = \! 0 \big\} \cap \big\{ Y \! = \! n \big\} \bigg)}{\mathbf{P} \big\{ Y \! = \! n \big\}} \, = \, 
+\begin{matrix}
+\text{по предпосылке об} \\
+\text{отсутствии последействия}
+\end{matrix} \, = \]
+\[ = \, \dfrac{\mathbf{P} \big\{ X \! = \! 0 \big\} \! \cdot \! \mathbf{P} \big\{ Z \! = \! n \big\}}{\mathbf{P} \big\{ Y \! = \! n \big\}} \, = \, \dfrac{e^{-\lambda \cdot (t-1)}  \cdot \rfrac{\lambda^n}{n!} \cdot \! e^{-\lambda}}{\rfrac{{(\lambda \cdot t)}^n}{n!} \cdot \! e^{-\lambda \cdot t}} \, = \, \dfrac{1}{t^n} \, = \, \dfrac{1}{2^5} \] 
+\end{itemize}
+\subsection*{Ответ}
+\begin{enumerate}
+\item[а)] $ e^{-\lambda \cdot t} \! = \! e^{-3} $
+\item[б)] $ \dfrac{1}{t^n} \! = \! \dfrac{1}{2^5} $
+\end{enumerate}
+\section*{Задание 4}
+\subsection*{Условие}
+В некоторой местности число детей в семье распределено по закону Пуассона. Найдите среднее число детей в семье, если доля бездетных семей составляет $ 20\% $.
+\subsection*{Решение}
+Пусть $ X $ -- число детей в семье:
+\[ X \, \sim \, Pois(\lambda) \]
+Доля бездетных составляет $ 20\% $, то есть если из всех семей случайно выбрать одну, то вероятность, что она будет бездетная, будет равна $ 0.2 $:
+\[ \mathbf{P} \big\{ X \! = \! 0 \big\} \, = \, 0.2 \]
+\[ e^{-\lambda} \, = \, 0.2 \]
+\[ \lambda \, = \, -ln(0.2) \]
+Среднее число детей в семье равно:
+\[ E[X] \, = \, \lambda \, = \, -ln(0.2) \]
+\subsection*{Ответ}
+$ -ln(0.2) $
+\section*{Задание 5}
+\subsection*{Условие} Рассмотрим когорту новорождённых, которые со временем взрослеют и умирают. Пусть $ S(t) $ -- доля доживших до возраста $ t $, $ S(0) \! = \! 1 $. Функция $ \lambda(t) \, = \, -\dfrac{\rfrac{dS}{dt}}{S(t)} $ называется силой (или интенсивностью) смертности. Бенджамин Гомперц предположил, что она экспоненциально растёт:
+\[ \lambda(t) \, = \, a \! \cdot \! e^{b \cdot t} \]
+Выведите функцию должития $ S(t) $, соответствующую указанной силе смертности $ \lambda (t) $.
+\subsection*{Решение}
+\[ -\dfrac{\rfrac{dS}{dt}}{S(t)} \, = \, a \! \cdot \! e^{b \cdot t} \]
+\[ -\dfrac{dS}{S(t)} \, = \, a \! \cdot \! e^{b \cdot t} \cdot \! dt \]
+\[ \int -\dfrac{dS}{S(t)} \, = \, \int a \! \cdot \! e^{b \cdot t} \cdot \! dt \, + \, C \]
+\[ -ln \left| S(t) \right| \, = \, \dfrac{a}{b} \! \cdot \! e^{b \cdot t} \, + \, C \]
+\[ S(t) \, = \, \left| S(t) \right| \, = \, exp \left( -\rfrac{a}{b} \cdot \! e^{b \cdot t} \, + \, C \right) \quad \text{-- общее решение} \]
+Из начальных условий:
+\[ 1 \, = \, S(0) \, = \, exp \left( -\rfrac{a}{b} \cdot \! e^{b \cdot 0} \, + \, C \right) \]
+\[ 0 \, = \, -\rfrac{a}{b} \! + \! C \]
+\[ C \, = \, \rfrac{a}{b} \]
+Частное решение:
+\[ S(t) \, = \, exp \left( (1 \! - \! e^{b \cdot t}) \! \cdot \rfrac{a}{b} \right) \]
+\subsection*{Ответ}
+\[ S(t) \, = \, exp \left( (1 \! - \! e^{b \cdot t}) \! \cdot \rfrac{a}{b} \right) \]
+\section*{Задание 6}
+\subsection*{Условие}
+Решите дифференциальное уравнение:
+\[ x \! \cdot \! \dfrac{dy}{dx} \! - \! 2 \! \cdot \! y \, = \, 2 \! \cdot \! x^4 \]
+\subsection*{Решение}
+\[ \dfrac{dy}{dx} \! + \! \underbrace{\left( - \dfrac{2}{x} \right)}_{a(x)} \! \cdot y \, = \, \underbrace{2 \! \cdot \! x^3}_{f(x)} \]
+Интегрирующий множитель:
+\[ u(x) \, = \, e^{\int a(x) \cdot dx} \, = \, e^{\int \left( -\frac{2}{x} \right) \cdot dx} \, = \, e^{-2 \cdot ln|x|} \, = \, \dfrac{1}{x^2} \]
+Тогда:
+\[ y \, = \, \dfrac{\int f(x) \! \cdot \! u(x) \! \cdot \! dx \, + \, C}{u(x)} \, = \, \dfrac{\int 2 \! \cdot \! x^3 \! \cdot \! (\rfrac{1}{x^2}) \! \cdot \! dx \, + \, C}{(\rfrac{1}{x^2})} \, = \, \dfrac{\int 2 \! \cdot \! x \! \cdot \! dx \, + \, C}{(\rfrac{1}{x^2})} \, = \, x^2 \! \cdot \! \big( x^2 \! + \! C \big) \]
+\subsection*{Ответ}
+\[ y \, = \, x^2 \big( x^2 \! + \! C \big) \]
+\section*{Задание 7}
+\subsection*{Условие}
+Решите дифференциальное уравнение: 
+\[ \dfrac{dy}{dt} \, = \, \dfrac{y^2}{3t} \]
+Найдите стационарное решение. Сходятся ли нестационарные решения к стационарному?
+\subsection*{Решение}
+\[ \dfrac{dy}{y^2} \, = \, \dfrac{dt}{3t} \]
+\[ \int \dfrac{dy}{y^2} \, = \, \int \dfrac{dt}{3t} \, + \, C \]
+\[ -\dfrac{1}{y} \, = \, \dfrac{ln|t|}{3} \, + \, C \]
+\[ y \, = \, -\dfrac{1}{\rfrac{ln|t|}{3} \, + \, C} \]
+\subsection*{Ответ}
+\end{document}
