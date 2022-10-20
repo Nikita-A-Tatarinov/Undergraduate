@@ -1,0 +1,233 @@
+\documentclass{article}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{5ex}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[dvipsnames]{color}
+\usepackage{colortbl}
+
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{float}
+
+\usepackage{diagbox}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{remark*}{Remark}
+
+\title{\textbf{Семинар 4\\по Теории Массового Обслуживания}}
+\author{\textit{от Татаринова Никиты Алексеевича, БПИ193}}
+\date{\the\year .\twodigits{\the\month}.\twodigits{\the\day}}
+\newcommand\twodigits[1]{%
+   \ifnum#1<10 0#1\else #1\fi
+}
+
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
+\begin{document}
+\maketitle
+\section*{Задание 1}
+\subsection*{Условие}
+Сигналы от лунного зонда поступают на станцию с интервалами ровно в $ 1 $ секунду. Станция обрабатывает каждый сигнал экспоненциально распределённое время со средним $ 0.4 $ сек. Если на момент поступления сигнала станция занята обработкой предыдущего, новый сигнал теряется.
+\begin{enumerate}
+\item[а)] Рассчитайте вероятность потери (для всех сигналов после первого).
+\item[б)] $ 0.2 $ секунды назад станция не смогла принять очередной сигнал и до сих пор занята. С какой вероятностью она закончит обработку до поступления следующего сигнала?
+\end{enumerate}
+\subsection*{Решение}
+\begin{enumerate}
+\item[а)] Пусть $ T $ -- время между сигналами. Тогда:
+\[ \lambda \, = \, \dfrac{1}{E \big[ T \big]} \, = \, \dfrac{1}{0.4} \, = \, 2.5 \]
+\[ T \, \sim \, Exp \left( \lambda \right) \, \sim \, Exp(2.5) \]
+Рассмотрим очередной момент времени, кратный секунде, т.е. момент времени поступления очередного сигнала. Если предыдущий непотерянный сигнал поступил секунду назад, то вероятность потери рассматриваемого сигнала равна $ \mathbf{P} \big\{ T \! > \! 1 \big\} $. Если предыдущий непотерянный сигнал поступил 2 секунды назад, то вероятность потери рассматриваемого сигнала равна $ \mathbf{P} \bigg( \big\{ T \! > \! 2 \big\} \big| \big\{ T \! > \! 1 \big\} \bigg) \, = \, \mathbf{P} \big\{ T \! > \! 1 \big\} $... Если предыдущий непотерянный сигнал поступил $ k \! \geqslant \! 1 $ секунд назад, то вероятность потери рассматриваемого сигнала равна $ \mathbf{P} \bigg( \big\{ T \! > \! k \big\} \big| \big\{ T \! > \! (k \! - \! 1) \big\} \bigg) \, = \, \mathbf{P} \big\{ T \! > \! 1 \big\} $.
+\[ \mathbf{P} \big\{ T \! > \! 1 \big\} \, = \, G(1) \, = \, e^{-\lambda \cdot 1} \, = \, e^{-2.5} \, \approx \, 0.08 \]
+\item[б)] Пусть $ T $ -- время от поступления последнего сигнала (отвергнутого) до завершения обработки текущего сигнала.
+\[ \mathbf{P} \bigg( \big\{ T \! < 1 \big\} \big| \big\{ T \! > \! 0.2 \big\} \bigg) \, = \, 1 \! - \! \mathbf{P} \bigg( \big\{ T \! \geqslant 1 \big\} \big| \big\{ T \! > \! 0.2 \big\} \bigg) \, = \, 1 \! - \! \dfrac{\mathbf{P} \bigg( \big\{ T \! \geqslant 1 \big\} \cap \big\{ T \! > \! 0.2 \big\} \bigg)}{\mathbf{P} \big\{ T \! > \! 0.2 \big\}} \, = \]
+\[ = \, 1 \! - \! \dfrac{\mathbf{P} \big\{ T \! \geqslant \! 1 \big\}}{\mathbf{P} \big\{ T \! > \! 0.2 \big\}} \, = \, 1 \! - \! \dfrac{G(1)}{G(0.2)} \, = \, 1 \! - \! \dfrac{e^{-\lambda \cdot 1}}{e^{-\lambda \cdot 0.2}} \, = \, 1 \! - \! e^{-\lambda \cdot 0.8} \, \approx \, 0.86 \]
+\end{enumerate}
+\subsection*{Ответ}
+\begin{enumerate}
+\item[а)] $ e^{-2.5} \! \approx \! 0.08 $
+\item[б)] $ 1 \! - \! e^{-2} \! \approx \! 0.86 $
+\end{enumerate}
+\section*{Задание 2}
+\subsection*{Условие}
+Беспокойный медведь Михаил, лёжа в берлоге, ворочается с боку на бок. Время, которое он проводит на одном боку, имеет показательное распределение, в среднем равно $ 2 $ суткам и не зависит от того, сколько он лежал на том или ином боку раньше. Какова вероятность того, что за $ 140 $ дней зимы Миша перевернётся с боку на бок не менее $ 64 $ раз?
+\subsection*{Решение}
+По условию, время на одном боку $ T $ описывается независимыми случайными величинами, показательно распределённми с одним и тем же параметром $ \lambda \! = \! \dfrac{1}{E \big[ T \big]} \, = \, 0.5 $. Значит, переворачивания с боку на бок происходят в пуассоновском потоке. Тогда, пусть $ X $ -- количество переворачиваний за время $ t \! = \! 140 $.
+\[ X \, \sim \, Pois(\lambda \! \cdot \! t) \, \sim \, Pois(70) \]
+\[ \mathbf{P} \big\{ X \! \geqslant \! 64 \big\} \, = \, 1 \! - \! \mathbf{P} \big\{ X \! < \! 64 \big\} \, = \, 1 \! - \! \sum\limits_{k=0}^{63} \dfrac{(\lambda \! \cdot \! t)^k}{k!} \! \cdot \! e^{-\lambda \cdot t} \, \approx \, 0.81 \]
+\subsection*{Ответ}
+$ 1 \! - \! \sum\limits_{k=0}^{63} \dfrac{(\lambda \! \cdot \! t)^k}{k!} \! \cdot \! e^{-\lambda \cdot t} \, \approx \, 0.81 $
+\section*{Задание 3}
+\subsection*{Условие}
+Завод выпускает телевизоры, доля брака в продукции составляет $ \alpha \! = \! 5\% $. И для качественной, и для бракованной продукции время жизни имеет показательное (экспоненциальное) распределение с параметром $ \lambda_1 \! = \! 0.2 $ для качественных телевизоров и $ \lambda_2 \! = \! 2 $ для бракованных (время измеряется в годах).
+\begin{enumerate}
+\item[а)] Только что покупатель приобрёл телевизор с этого завода. Какова вероятность того, что он проработает два года?
+\item[б)] Телевизор проработал год, не сломавшись. Какова вероятность того, что он проработает ещё два года?
+\item[в)] Телевизор проработал год, не сломавшись. Какова вероятность того, что он бракованный?
+\end{enumerate}
+\subsection*{Решение}
+\begin{enumerate}
+\item[а)] Пусть $ T_\text{брак} $ -- время работы бракованного телевизора; $ T_\text{небрак} $ -- время работы небракованного телевизора; $ T $ -- время работы произвольного телевизора с завода. Тогда:
+\begin{equation*}
+\left\{
+\begin{aligned}
+& T_\text{брак} \, \sim \, Exp(\lambda_2) \\
+& T_\text{небрак} \, \sim \, Exp(\lambda_1) \\
+& \mathbf{P} \big\{ T \! > \! t \big\} \, = \, \alpha \! \cdot \! \mathbf{P} \big\{ T_\text{брак} \! > \! t \big\} \! + \! (1 \! - \! \alpha ) \! \cdot \! \mathbf{P} \big\{ T_\text{небрак} \! > \! t \big\} \, = \, \alpha \! \cdot \! e^{-\lambda_2 \cdot t} \! + \! (1 \! - \! \alpha ) \! \cdot \! e^{-\lambda_1 \cdot t} \\
+\end{aligned}
+\right.
+\end{equation*}
+Для двух лет вероятность равна:
+\[ \mathbf{P} \big\{ T \! > \! 2 \big\} \, = \, 0.05 \! \cdot \! e^{-4} \! + \! 0.95 \! \cdot \! e^{-0.4} \, \approx \, 0.638 \]
+\item[б)]
+\[ \mathbf{P} \bigg( \big\{ T \! > \! 3 \big\} \big| \big\{ T \! > \! 1 \big\} \bigg) \, = \, \dfrac{\mathbf{P} \bigg( \big\{ T \! > \! 3 \big\} \cap \big\{ T \! > \! 1 \big\} \bigg)}{\mathbf{P} \big\{ T \! > \! 1 \big\}} \, = \, \dfrac{\mathbf{P} \big\{ T \! > \! 3 \big\}}{\mathbf{P} \big\{ T \! > \! 1 \big\}} \, = \, \dfrac{0.05 \! \cdot \! e^{-6} \! + \! 0.95 \! \cdot \! e^{-0.6}}{0.05 \! \cdot \! e^{-2} \! + \! 0.95 \! \cdot \! e^{-0.2}} \, = \, 0.665 \]
+\item[в)] Введём гипотезы (попарно несовместны и образуют пространство элементарных событий):
+\begin{equation*}
+\left\{
+\begin{aligned}
+& H_1 \text{ -- телевизор бракованный} \\
+& H_2 \text{ -- телевизор небракованный} \\
+\end{aligned}
+\right.
+\end{equation*}
+\[ \mathbf{P} \bigg( H_1 \big| \big\{ T \! > \! 1 \big\} \bigg) \, = \, \dfrac{\mathbf{P} \bigg( H_1 \cap \big\{ T \! > \! 1 \big\} \bigg)}{\mathbf{P} \big\{ T \! > \! 1 \big\}} \, = \, \dfrac{\mathbf{P}(H_1) \! \cdot \! \mathbf{P} \bigg( \big\{ T \! > \! 1 \big\} \big| H_1 \bigg)}{\mathbf{P} \big\{ T \! > \! 1 \big\}} \, = \, \dfrac{\mathbf{P}(H_1) \! \cdot \! \mathbf{P} \big\{ T_\text{брак} \! > \! 1 \big\}}{\mathbf{P} \big\{ T \! > \! 1 \big\}} \, = \]
+\[  = \, \dfrac{0.05 \! \cdot \! e^{-2}}{0.05 \! \cdot \! e^{-2} \! + \! 0.95 \! \cdot \! e^{-0.2}} \, \approx \, 0.0086 \]
+\end{enumerate}
+\subsection*{Ответ}
+\begin{enumerate}
+\item[а)] $ 0.638 $
+\item[б)] $ 0.665 $
+\item[в)] $ 0.0086 $
+\end{enumerate}
+\section*{Задание 4}
+\subsection*{Условие}
+Покажите, что геометрическое распределение обладает свойством отсутствия последействия, т.е.
+\[ G_X \Big( x \! + \! s \big| X \! > \! s \Big) \, = \, G_X(x) \quad \text{если } X \! \sim \! Geo(p) \]
+\subsection*{Решение}
+\[ G_X \Big( x \! + \! s \big| X \! > \! s \Big) \, = \, \mathbf{P} \bigg( \big\{ X \! > \! x \! + \! s \big\} \big| \big\{ X \! > \! s \big\} \bigg) \, = \, \dfrac{\mathbf{P} \bigg( \big\{ X \! > \! x \! + \! s \big\} \cap \big\{ X \! > \! s \big\} \bigg)}{\mathbf{P} \big\{ X \! > \! s \big\}} \, = \]
+\[ = \, \dfrac{\mathbf{P} \big\{ X \! > \! x \! + \! s \big\}}{\mathbf{P} \big\{ X \! > \! s \big\}} \, = \, \dfrac{\sum\limits_{i=x+s}^\infty (1 \! - \! p)^i \! \cdot \! p}{\sum\limits_{i=s}^\infty (1 \! - \! p)^i \! \cdot \! p} \, = \, \dfrac{(1 \! - \! p)^{x+s} \! \cdot \! \rfrac{1}{p}}{(1 \! - \! p)^{s} \! \cdot \! \rfrac{1}{p}} \, = \, (1 \! - \! p)^x \]
+\[ G_X(x) \, = \, \mathbf{P} \big\{ X \! > \! x \big\} \, = \, \sum\limits_{i=x}^\infty (1 \! - \! p)^i \! \cdot \!p \, = \, p \! \cdot \! (1 \! - \! p)^{x} \! \cdot \! \rfrac{1}{p} \, = \, (1 \! - \! p)^{x} \, = \, G_X \Big( x \! + \! s \big| X \! > \! s \Big) \]
+\section*{Задание 5}
+\subsection*{Условие}
+Число звёзд в случайно взятом пространстве объёма $ V $ распределено по закону Пуассона с параметром $ \lambda \! \cdot \! V $. Найдите закон распределения величины, равной расстоянию от случайно отобранной звезды до соседней к ней.
+\subsection*{Решение}
+Пусть $ Y $ -- количество звёзд в шаре радиуса $ x $.
+\[ Y \, \sim \, Pois \left( \lambda \! \cdot V \right) \, \sim \, Pois \left( \lambda \! \cdot \dfrac{4 \pi x^3}{3} \right) \]
+Пусть $ X $ -- расстояние от определённой звезды до ближайшей звезды.
+\[ G_X(x) \, = \, \mathbf{P} \big\{ X \! > \! x \big\} \, = \, \mathbf{P} \big\{ \text{в шаре радиуса } x \text{ нет ни одной звезды} \big\} \, = \, \mathbf{P} \big\{ Y \! = \! 0 \big\} \, = \]
+\[ = \, \dfrac{{\left( \lambda \! \cdot \! \pi \! \cdot \! x^3 \! \cdot \! \rfrac{4}{3} \right)}^0}{0!} \! \cdot \! e^{-\lambda \pi x^3 \cdot \rfrac{4}{3}} \]
+\subsection*{Ответ}
+\[ G(x) \, = \, exp \left( \lambda \! \cdot \! \dfrac{4 \pi x^3}{3} \right) \]
+\section*{Задание 6}
+\subsection*{Условие}
+Клиенты приходят в столовую неоднородным пуассоновским потоком. В обеденное время (13:00-14:00) интенсивность потока составляет $ 0.5 $ посетителей в минуту, а в остальное время - $ 0.1 $ посетитель в минуту. Сейчас 13:58. 
+\begin{enumerate}
+\item[а)] С какой вероятностью в следующие $ 7 $ минут никто не придёт?
+\item[б)] Выпишите дополнительную функцию распределения для времени ожидания следующего посетителя.
+\item[в)] С какой вероятностью за следующие 7 минут придёт ровно один посетитель?
+\end{enumerate}
+\subsection*{Решение}
+\begin{enumerate}
+\item[а)] Пусть:
+\begin{equation*}
+\left\{
+\begin{aligned}
+& T_1 \! \sim \! Exp(\lambda_1) \! \sim \! Exp(0.5) & & \text{ -- время ожидания клиента в обеденное время} \\
+& T_2 \! \sim \! Exp(\lambda_2) \! \sim \! Exp(0.1) & & \text{ -- время ожидания клиента в другое время время} \\
+& T & & \text{ -- время ожилания клиента с 13:58}
+\end{aligned}
+\right.
+\end{equation*}
+\[ \mathbf{P} \big\{ T \! > 7 \big\} \, = \, \mathbf{P} \bigg( \big\{ T_1 \! > \! 2 \big\} \cap \big\{ T_2 \! > \! 5 \big\} \bigg) \, = \, \mathbf{P} \big\{ T_1 \! > \! 2 \big\} \! \cdot \! \mathbf{P} \big\{ T_2 \! > \! 5 \big\} \, = \, e^{-\lambda_1 \cdot 2} \! \cdot \! e^{-\lambda_2 \cdot 5} \, \approx \, 0.22 \]
+\item[б)]
+Для $ t \! \in \! [0;2) $:
+\[ G(t) \, = \, \mathbf{P} \big\{ T \! > \! t \big\} \, = \, \mathbf{P} \big\{ T_1 \! > \! t \big\} \, = \, e^{-\lambda_1 \cdot t} \]
+Для $ T \! \in \! [2;+\infty ) $:
+\[ G(t) \, = \, \mathbf{P} \big\{ T \! > \! t \big\} \, = \, \mathbf{P} \bigg( \big\{ T_1 \! > \! 2 \big\} \cap \big\{ T_2 \! > \! t \! - \! 2 \big\} \bigg) \, = \, e^{-\lambda_1 \cdot 2} \! \cdot \! e^{-\lambda_2 \cdot (t-2)} \, = \, e^{-\lambda_1 \cdot 2 - \lambda_2 \cdot (t-2)} \]
+\item[в)] Пусть:
+\begin{equation*}
+\left\{
+\begin{aligned}
+& X_1 \! \sim \! Pois(\lambda_1 \! \cdot \! 2) \! \sim \! Pois(1) & & \text{ -- количество клиентов в промежутке (13:58-14:00)} \\
+& X_2 \! \sim \! Pois(\lambda_2 \! \cdot \! 5) \! \sim \! Pois(0.5) & & \text{ -- количество клиентов в промежутке (14:00-14:05)} \\
+& X & & \text{ -- количество клиентов в промежутке (13:58-14:05)}
+\end{aligned}
+\right.
+\end{equation*}
+\[ \mathbf{P}(x) \, = \, \mathbf{P} \bigg( \big\{ X_1 \! = \! 1 \big\} \cap \big\{ X_2 \! = \! 0 \big\} \bigg) \! + \! \mathbf{P} \bigg( \big\{ X_1 \! = \! 0 \big\} \cap \big\{ X_2 \! = \! 1 \big\} \bigg) \, = \]
+\[ =\, \dfrac{\lambda_1 \cdot \! 2}{1!} \! \cdot \! e^{-\lambda_1 \cdot 2} \! \cdot \! e^{-\lambda_2 \cdot 5} \! + \! e^{-\lambda_1 \cdot 2} \! \cdot \! \dfrac{\lambda_2 \! \cdot \! 5}{1!} \! \cdot \! e^{-\lambda_2 \cdot 5} \, \approx \, 0.33 \]
+\end{enumerate}
+\subsection*{Ответ}
+\begin{enumerate}
+\item[а)] $ e^{-1.5} \! \approx \! 0.22 $
+\item[б)]
+\begin{equation*}
+G(t) \, = \,
+\left\{
+\begin{aligned}
+& e^{-\lambda_1 \cdot t} & & \quad t \! \in \! [0;2) \\
+& e^{-\lambda_1 \cdot 2 - \lambda_2 \cdot (t-2)} & & \quad t \! \in \! [2;+\infty )
+\end{aligned}
+\right.
+\end{equation*}
+\item[в)] $ 1.5 \! \cdot \! e^{-1.5} \! \approx \! 0.33 $
+\end{enumerate}
+\section*{Задание 7}
+\subsection*{Условие}
+Паша, Саша и Маша приобрели Машину Наивысшего Блаженства, которая доставляет пользователю Наивысшее Блаженство за экспоненциально распределённое время со средним $ 5 $ мин. Паша, Саша и Маша используют машину по очереди, причём каждый обслуженный пользователь незамедлительно снова встаёт в очередь к Машине. Времена обслуживания независимы.
+\begin{enumerate}
+\item[а)] Саша только что забрался в Машину. С какой вероятностью он (или она) достигнет Наивысшего Блаженства в течение $ 4 $ минут?
+\item[б)]  Прошло уже $ 5 $ минут, а Машина всё продолжает обрабатывать Сашу. С какой вероятностью обслуживание завершится в течение следующих $ 4 $ минут?
+\item[в)] Только что обслуживание Саши завершилось. С какой вероятностью ему удастся снова залезть в Машину в течение следующих $ 10 $ минут?
+\end{enumerate}
+\subsection*{Решение}
+\begin{enumerate}
+\item[а)] Пусть $ T $ -- время обслуживания человека.
+\[ T \, \sim \, Exp(\lambda) \, \sim \, Exp \left( \dfrac{1}{E \big[ T \big]} \right) \, \sim \, Exp(0.2) \]
+\[ \mathbf{P} \big\{ T \! < \! 4 \big\} \, = \, 1 \! - \! e^{-\lambda \cdot 4} \, \approx \, 0.55 \]
+\item[б)]
+\[ \mathbf{P} \bigg( \big\{ T \! < \! 9 \big\} \big| \big\{ T \! > \! 5 \big\} \bigg) \, = \, 1 \! - \! \mathbf{P} \bigg( \big\{ T \! \geqslant \! 9 \big\} \big| \big\{ T \! > \! 5 \big\} \bigg) \, = 
+\begin{matrix}
+\text{по предпосылке об} \\
+\text{отсутствии последействия}
+\end{matrix} \, = \]
+\[ = \, 1 \! - \! \mathbf{P} \big\{ T \! \geqslant \! 4 \big\} \, \approx \, 0.55 \]
+\item[в)] Пусть:
+\begin{equation*}
+\left\{
+\begin{aligned}
+& T_\text{П} \! \sim \! Exp(\lambda) \! & & \text{ -- время обслуживания Паши} \\
+& T_\text{М} \! \sim \! Exp(\lambda) \! & & \text{ -- время обслуживания Маши} \\
+& S & & \text{ -- время ожилания Саши}
+\end{aligned}
+\right.
+\end{equation*}
+Времена обслуживания Паши и Маши независимы и экспоненциально распределены с параметром $ \lambda $. Значит, время ожидания Саши $ S $ имеет распределение Эрланга (по определению этого распределения):
+\[ S \, = \, T_\text{П} \! + \! T_\text{М} \, \sim \, Erlang(2,\lambda) \]
+Тогда:
+\[ \mathbf{P} \big\{ S \! < \! 10 \big\} \, = \, F_S(10) \, = \, 1 \! - \! \sum_{i=0}^{2-1} \dfrac{(\lambda \! \cdot \! 10)^i}{i!} \! \cdot \! e^{-\lambda \cdot 10} \, = \, 1 \! - \! e^{-\lambda \cdot 10} \! - \! \dfrac{\lambda \! \cdot \! 10}{1!} \! \cdot \! e^{-\lambda \cdot 10} \, \approx \, 0.59 \]
+\end{enumerate}
+\subsection*{Ответ}
+\begin{enumerate}
+\item[а)] $ 1 \! - \! e^{-0.8} \! \approx \! 0.55 $
+\item[б)] $ 1 \! - \! e^{-0.8} \! \approx \! 0.55 $
+\item[в)] $ 1 \! - \! 3 \! \cdot \! e^{-2} \, \approx \, 0.59 $
+\end{enumerate}
+\end{document}

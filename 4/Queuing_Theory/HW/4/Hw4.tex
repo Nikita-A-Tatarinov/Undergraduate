@@ -1,0 +1,86 @@
+\documentclass{article}
+
+\usepackage{indentfirst}
+\setlength{\parindent}{5ex}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[dvipsnames]{color}
+\usepackage{colortbl}
+
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{float}
+
+\usepackage{diagbox}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{remark*}{Remark}
+
+\title{\textbf{ДЗ 4\\по Теории Массового Обслуживания}}
+\author{\textit{от Татаринова Никиты Алексеевича, БПИ193}}
+\date{\the\year .\twodigits{\the\month}.\twodigits{\the\day}}
+\newcommand\twodigits[1]{%
+   \ifnum#1<10 0#1\else #1\fi
+}
+
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
+\begin{document}
+\maketitle
+\section*{Задание 1}
+\subsection*{Условие}
+Надежда собирает деньги на благотворительность, её задача — собрать $ 8000 $ рублей. Она устраивается продавать билеты в музей, куда посетители приходят пуассоновским потоком, в среднем $ 5 $ в час. Каждый посетитель платит за вход $ 400 $ рублей.\par
+В 11:30 Надежда заглядывает в кассу и обнаруживает там $ 6000 $ рублей. Она собирается покинуть музей, как только там наберётся нужная ей сумма.
+\begin{enumerate}
+\item[а)] С какой вероятностью она успеет уйти до 13:00?
+\item[б)] Пусть $ T $ -- время, которое потребуется, чтобы собрать оставшиеся $ 2000 $ рублей. Выпишите дополнительную функцию распределения величины $ T $.
+\end{enumerate}
+\subsection*{Решение}
+\begin{enumerate}
+\item[а)] Пусть $ X $ -- количество людей, которое придёт в интервал (11:30-13:00). Тогда:
+\[ X \, \sim \, Pois(\lambda \! \cdot \! 1.5) \, \sim \, Pois(7.5) \]
+\[ \mathbf{P} \big\{ X \! \geqslant \! 5 \big\} \, = \, 1 \! - \! \mathbf{P} \big\{ X \! < \! 5 \big\} \, = \, 1 \! - \! \sum\limits_{k=0}^4 \dfrac{(\lambda \! \cdot \! 1.5)^k}{k!} \! \cdot \! e^{-\lambda \cdot 1.5} \, \approx \, 0.87 \]
+\item[б)] Время $ T $ складывается из времён ожиданий $ 5 $ человек, приходящих в пуассоновском потоке. Времена ожидания каждого по отдельности $ T_1, \, ... \, ,T_5 $ независимы и имеют экспоненциальное распределение $ Exp(\lambda) $. Значит, $ T $ имеет распределение Эрланга (по определению этого распределения).
+\[ T \, = \, \sum\limits_{i=1}^5 T_i \, \sim \, Erlang(5,\lambda ) \]
+Тогда:
+\[ G_T(t) \, = \, \sum\limits_{i=0}^{k-1} \dfrac{(\lambda \! \cdot \! t)^i}{i!} \! \cdot \! e^{-\lambda \cdot t} \, = \, \dfrac{e^{-5 \cdot t}}{24} \! \cdot \! \big( 24 \! + \! 120 \! \cdot \! t \! + \! 300 \! \cdot \! t^2 \! + \! 500 \! \cdot \! t^3 \! + \! 625 \! \cdot \! t^4 \big) \]
+\end{enumerate}
+\subsection*{Ответ}
+\begin{enumerate}
+\item[а)] $ 0.87 $
+\item[б)] $ G_T(t) \, = \, \sum\limits_{i=0}^{k-1} \dfrac{(\lambda \! \cdot \! t)^i}{i!} \! \cdot \! e^{-\lambda \cdot t} \, = \, \dfrac{e^{-5 \cdot t}}{24} \! \cdot \! \big( 24 \! + \! 120 \! \cdot \! t \! + \! 300 \! \cdot \! t^2 \! + \! 500 \! \cdot \! t^3 \! + \! 625 \! \cdot \! t^4 \big) $
+\end{enumerate}
+\section*{Задание 2}
+\subsection*{Условие} Устройство состоит из двух блоков: $ A $ и $ B $. Случайные величины $ T_A $ и $ T_B $ независимы и экспоненциально распределены: $ T_A \sim \! Exp(\lambda_A) $, $ T_B \! \sim \! Exp(\lambda_B) $ -- они отражают время исправной работы блоков $ A $ и $ B $. Устройство работает до отказа любого из блоков. Найдите функцию надёжности (т.е. дополнительную функцию распределения) для времени исправной работы устройства и среднее время до отказа.
+\subsection*{Решение}
+Пусть $ T $ -- время работы устройства.
+\[ G_T(t) \, = \, \mathbf{P} \big\{ T \! > \! t \big\} \, = \, \mathbf{P} \bigg( \big\{ T_A \! > \! t \big\} \cap \big\{ T_B \! > \! t \big\} \bigg) \, = \, \mathbf{P} \big\{ T_A \! > \! t \big\} \! \cdot \! \mathbf{P} \big\{ T_B \! > \! t \big\} \, = \, e^{-(\lambda_A+\lambda_B) \cdot t} \]
+\[ E \big[ T \big] \, = \, \int_0^{+\infty} G_T(t) \! \cdot \! dt \, = \, \int_0^{+\infty} e^{-(\lambda_A+\lambda_B) \cdot t} \! \cdot \! dt \, = \, \left. \Big( -\dfrac{1}{\lambda_A \! + \! \lambda_B} \! \cdot \! e^{-(\lambda_A+\lambda_B) \cdot t} \Big) \right|_0^{+\infty} \, = \]
+\[ = \, 0 \! - \! \Big( -\dfrac{1}{\lambda_A \! + \! \lambda_B} \Big) \, = \, \dfrac{1}{\lambda_A \! + \! \lambda_B} \]
+\subsection*{Ответ}
+\[ G_T(t) \, = \, e^{-(\lambda_A+\lambda_B) \cdot t} \]
+\[ E \big[ T \big] \, = \, \dfrac{1}{\lambda_A \! + \! \lambda_B} \]
+\section*{Задание 3}
+\subsection*{Условие}
+Покажите, что геометрическое распределение обладает свойством отсутствия последействия, т.е.
+\[ G_X \Big( x \! + \! s \big| X \! > \! s \Big) \, = \, G_X(x) \quad \text{если } X \! \sim \! Geo(p) \]
+\subsection*{Решение}
+\[ G_X \Big( x \! + \! s \big| X \! > \! s \Big) \, = \, \mathbf{P} \bigg( \big\{ X \! > \! x \! + \! s \big\} \big| \big\{ X \! > \! s \big\} \bigg) \, = \, \dfrac{\mathbf{P} \bigg( \big\{ X \! > \! x \! + \! s \big\} \cap \big\{ X \! > \! s \big\} \bigg)}{\mathbf{P} \big\{ X \! > \! s \big\}} \, = \]
+\[ = \, \dfrac{\mathbf{P} \big\{ X \! > \! x \! + \! s \big\}}{\mathbf{P} \big\{ X \! > \! s \big\}} \, = \, \dfrac{\sum\limits_{i=x+s}^\infty (1 \! - \! p)^i \! \cdot \! p}{\sum\limits_{i=s}^\infty (1 \! - \! p)^i \! \cdot \! p} \, = \, \dfrac{(1 \! - \! p)^{x+s} \! \cdot \! \rfrac{1}{p}}{(1 \! - \! p)^{s} \! \cdot \! \rfrac{1}{p}} \, = \, (1 \! - \! p)^x \]
+\[ G_X(x) \, = \, \mathbf{P} \big\{ X \! > \! x \big\} \, = \, \sum\limits_{i=x}^\infty (1 \! - \! p)^i \! \cdot \!p \, = \, p \! \cdot \! (1 \! - \! p)^{x} \! \cdot \! \rfrac{1}{p} \, = \, (1 \! - \! p)^{x} \, = \, G_X \Big( x \! + \! s \big| X \! > \! s \Big) \]
+\end{document}
