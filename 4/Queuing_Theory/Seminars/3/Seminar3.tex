@@ -33,10 +33,7 @@
 
 \title{\textbf{Семинар 3\\по Теории Массового Обслуживания}}
 \author{\textit{от Татаринова Никиты Алексеевича, БПИ193}}
-\date{\the\year .\twodigits{\the\month}.\twodigits{\the\day}}
-\newcommand\twodigits[1]{%
-   \ifnum#1<10 0#1\else #1\fi
-}
+\date{2022.09.22}
 
 \newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
 
@@ -75,11 +72,12 @@
 \item[а)]
 \[ \mathbf{P} \big\{ X \! \geqslant \! 1 \big\} \, = \, 1 \! - \! \mathbf{P} \big\{ X \! = \! 0 \big\} \, = \, 1 \! - \! \dfrac{0.8^0}{0!} \! \cdot \! e^{-0.8} \, = \, 1 \! - \! e^{-0.8}  \]
 \item[б)]
+\[ \mathbf{P} \big\{ X \! = \! 2 \! \cdot \! k \big\} \! - \! \mathbf{P} \big\{ X \! = \! 2 \! \cdot \! k \! + \! 1 \big\} \, = \, \dfrac{\lambda^{2 \cdot k}}{(2 \! \cdot \! k)!} \! \cdot \! e^{-\lambda} \! - \! \dfrac{\lambda^{2 \cdot k+1}}{(2 \! \cdot \! k \! + \! 1)!} \! \cdot \! e^{-\lambda} \, = \, e^{-\lambda} \! \cdot \! \dfrac{\lambda^{2 \cdot k} \! \cdot \! (2 \! \cdot \! k \! + \! 1 \! - \! \lambda)}{(2 \! \cdot \! k \! + \! 1)!} \, > \, 0 \quad \forall k \! \geqslant \! 0 \]
 \end{enumerate}
 \subsection*{Ответ}
 \begin{enumerate}
 \item[а)] $ \mathbf{P} \big\{ X \! \geqslant \! 1 \big\} \, = \, 1 \! - \! e^{-0.8} $
-\item[б)]
+\item[б)] $ \mathbf{P} \big\{ \text{чётные } X \big\} \, > \, \mathbf{P} \big\{ \text{нечётные } X \big\} $
 \end{enumerate}
 \section*{Задание 3}
 \subsection*{Условие}
@@ -165,7 +163,11 @@ $ -ln(0.2) $
 \[ \dfrac{dy}{dt} \, = \, \dfrac{y^2}{3t} \]
 Найдите стационарное решение. Сходятся ли нестационарные решения к стационарному?
 \subsection*{Решение}
-Обособленное решение:
+Сначала найдём стационарное решение ($ y(t) \! = \! C $):
+\[ 0 \, = \, \dfrac{C^2}{3t} \]
+Уравнение обращается в тождество только при $ C \! = \! 0 $, то есть стационарное решение имеет вид:
+\[ y(t) \, = \, 0 \]\par
+Теперь найдём общее решение. Обособленное решение:
 \[ y(t) \, = \, 0 \]
 Отбросим это решение:
 \[ \dfrac{dy}{y^2} \, = \, \dfrac{dt}{3t} \]
@@ -176,5 +178,13 @@ $ -ln(0.2) $
 Стационарное решение:
 \[ y(t) \, = \, 0 \]
 Решение в общем виде (сходится к стационарному):
-\[ y(t) \, = \, -\dfrac{1}{\rfrac{ln|t|}{3} \, + \, C} \]
+\begin{equation*}
+y(t) \, = \, 
+\left[
+\begin{aligned}
+& 0 \\
+& -\dfrac{1}{\rfrac{ln|t|}{3} \, + \, C} \\
+\end{aligned}
+\right.
+\end{equation*}
 \end{document}

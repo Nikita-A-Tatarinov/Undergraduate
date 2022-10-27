@@ -72,8 +72,13 @@
 По условию, время на одном боку $ T $ описывается независимыми случайными величинами, показательно распределённми с одним и тем же параметром $ \lambda \! = \! \dfrac{1}{E \big[ T \big]} \, = \, 0.5 $. Значит, переворачивания с боку на бок происходят в пуассоновском потоке. Тогда, пусть $ X $ -- количество переворачиваний за время $ t \! = \! 140 $.
 \[ X \, \sim \, Pois(\lambda \! \cdot \! t) \, \sim \, Pois(70) \]
 \[ \mathbf{P} \big\{ X \! \geqslant \! 64 \big\} \, = \, 1 \! - \! \mathbf{P} \big\{ X \! < \! 64 \big\} \, = \, 1 \! - \! \sum\limits_{k=0}^{63} \dfrac{(\lambda \! \cdot \! t)^k}{k!} \! \cdot \! e^{-\lambda \cdot t} \, \approx \, 0.81 \]
+Аппроксимация нормальным распределением:
+\[ \mathbf{P} \big\{ X \! \geqslant \! 64 \big\} \, = \, 1 \! - \! \mathbf{P} \big\{ X \! < \! 64 \big\} \, = \, 1 \! - \! \mathbf{P} \left\{ \dfrac{X \! - \! E \big[ X \big]}{\sqrt{D \big[ X \big]}} \! < \! \dfrac{64 \! - \! E \big[ X \big]}{\sqrt{D \big[ X \big]}} \right\} \, = \, 1 \! - \! \mathbf{P} \big\{ Z \! < \! -0.72 \big\} \, = \]
+\[ = \, 1 \! - \! \mathbf{P} \big\{ Z \! > \! 0.72 \big\} \, = \, \mathbf{P} \big\{ Z \! < \! 0.72 \big\} \, \approx \, 0.76 \]
 \subsection*{Ответ}
-$ 1 \! - \! \sum\limits_{k=0}^{63} \dfrac{(\lambda \! \cdot \! t)^k}{k!} \! \cdot \! e^{-\lambda \cdot t} \, \approx \, 0.81 $
+$ 1 \! - \! \sum\limits_{k=0}^{63} \dfrac{(\lambda \! \cdot \! t)^k}{k!} \! \cdot \! e^{-\lambda \cdot t} \, \approx \, 0.81 $\\
+или\par
+$ \mathbf{P} \big\{ Z \! < \! 0.72 \big\} \, \approx \, 0.76 $
 \section*{Задание 3}
 \subsection*{Условие}
 Завод выпускает телевизоры, доля брака в продукции составляет $ \alpha \! = \! 5\% $. И для качественной, и для бракованной продукции время жизни имеет показательное (экспоненциальное) распределение с параметром $ \lambda_1 \! = \! 0.2 $ для качественных телевизоров и $ \lambda_2 \! = \! 2 $ для бракованных (время измеряется в годах).
@@ -205,7 +210,7 @@ G(t) \, = \,
 \item[б)]
 \[ \mathbf{P} \bigg( \big\{ T \! < \! 9 \big\} \big| \big\{ T \! > \! 5 \big\} \bigg) \, = \, 1 \! - \! \mathbf{P} \bigg( \big\{ T \! \geqslant \! 9 \big\} \big| \big\{ T \! > \! 5 \big\} \bigg) \, = 
 \begin{matrix}
-\text{по предпосылке об} \\
+\text{по свойству об} \\
 \text{отсутствии последействия}
 \end{matrix} \, = \]
 \[ = \, 1 \! - \! \mathbf{P} \big\{ T \! \geqslant \! 4 \big\} \, \approx \, 0.55 \]

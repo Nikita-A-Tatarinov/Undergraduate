@@ -82,9 +82,7 @@ F(x) \, = \,
 \[ E \big[ X \big] \, = \, \int\limits_0^{+\infty} G_X(x) \! \cdot \! dx \]
 \begin{enumerate}
 \item[а)]
-\[ E \big[ X \big] \, = \, \sum\limits_{i=1}^{+\infty} i \! \cdot \! p \! \cdot \! {(1 \! - \! p)}^i \, = \, \sum\limits_{i=1}^{+\infty} (i \! + \! 1) \! \cdot \! p \! \cdot \! {(1 \! - \! p)}^i \, - \, \sum\limits_{i=1}^{+\infty} p \! \cdot \! {(1 \! - \! p)}^i \, = \, p \sum\limits_{i=1}^{+\infty} \dfrac{dq^{i+1}}{dq} \, - \, (1 \! - \! p) \, = \]
-\[ = \, p \! \cdot \! \dfrac{d}{dq} \left( \sum\limits_{i=1}^{+\infty} q^{i+1} \right) \, - \, (1 \! - \! p) \, = \, p \! \cdot \! \dfrac{d}{dq} \left( \dfrac{q^2}{1 \! - \! q} \right) \, - \, (1 \! - \! p) \, = \, p \! \cdot \! \dfrac{2 \! \cdot \! q \! \cdot \! (1 \! - \! q) \! - \! q^2 \! \cdot \! (-1)}{{(1 \! - \! q)}^2} \, - \, (1 \! - \! p) \, = \]
-\[ = \, p \! \cdot \! \dfrac{(2 \! - \! q) \! \cdot \! q}{{(1 \! - \! q)}^2} \, - \, (1 \! - \! p) \, = \, p \! \cdot \! \dfrac{(1 \! + \! p) (1 \! - \! p)}{p^2} \! - \! (1 \! - \! p) \, = \, \dfrac{1 \! - \! p^2}{p} \! + \! p \! - \! 1 \, = \, \dfrac{1}{p} \! - \! 1 \]
+\[ E \big[ X \big] \, = \, \sum\limits_{i=0}^\infty \left[ \Big( (i \! + \! 1) \! - \! i \Big) \! \cdot \! \bigg( 1 \! - \! \sum\limits_{j=0}^i p \! \cdot \! (1 \! - \! p)^{i} \bigg) \right] \, = \, \sum_{i=0}^\infty \left[ 1 \! - \! p \! \cdot \! \dfrac{1 \! - \! (1 \! - \! p)^{i+1}}{1 \! - \! (1 \! - \! p)} \right] \, = \, \sum\limits_{i=0}^\infty (1 \! - \! p)^{i+1} \, = \]
 \item[б)]
 \[ E \big[ X \big] \, = \, \int\limits_0^{+\infty} 0.8 \! \cdot \! e^{-x} \! \cdot \! dx \, = \, -0.8 \! \cdot \! e^{-x} \Big|_0^{+\infty} \, = \, 0 \! - \! (-0.8) \, = \, 0.8 \]
 \end{enumerate}
@@ -101,10 +99,11 @@ Calculate $ \mathbf{P} (k) $ for $ k \! = \! 2,3,4 $ and find $ \mathbf{P} (k) $
 Из условия, $ 1 $-я заявка точно не будет потеряна. Поскольку каждая заявка обслуживается ровно 1 минуту, $ 2 $-я заявка будет потеряна, если придёт через $ [0.7;1] $ минуту после $ 1 $й, то есть:
 \[ \mathbf{P} (2) \! = \! \dfrac{1 \! - \! 0.7}{1.2 \! - \! 0.7} \, = \, 0.6 \]\par
 Далее рассмотрим произвольную $ k $-ю заявку $ \forall k \! \geqslant \! 3 $. Если $ (k \! - \! 1) $-я заявка потеряна, то $ k $-я заявка точно не будет потеряна, так как она придёт минимум через $ 0.7 $ минут после $ (k \! - \! 1) $-й, а $ (k \! - \! 1) $-я заявка пришла минимум через $ 0.7 $ минут после $ (k \! - \! 2) $-й, то есть $ k $-я заявка придёт минимум через $ 1.4 $ минуты после $ (k \! - \! 2) $, в то время как обслуживание любой заявки занимает ровно минуту. Если же $ (k \! - \! 1) $-я заявка не потеряна, то вероятность потери $ k $й рассчитывается так же, как и для $ 2 $й. Таким образом, вероятность потери $ k $-й заявки равна
-\[ \mathbf{P}(k) \, = \, \Big( 1 \! - \! \mathbf{P}(k \! - \! 1) \Big) \! \cdot \! \mathbf{P}(2) \]
+\[ \mathbf{P}(k) \, = \, \Big( 1 \! - \! \mathbf{P}(k \! - \! 1) \Big) \! \cdot \! \mathbf{P}(2) \, = \, -\mathbf{P}(2) \! \cdot \! \mathbf{P}(k \! - \! 1) \! + \! \mathbf{P}(2) \, = \, {\Big( -\mathbf{P}(2) \Big)}^{k-2} \! \cdot \! \mathbf{P}(2) + \]
+\[ + \mathbf{P}(2) \! \cdot \! \dfrac{1 \! - \! {\Big( -\mathbf{P}(2) \Big)}^{k-2}}{1 \! - \! \Big( -\mathbf{P}(2) \Big)} \, = \, -{\Big( -\mathbf{P}(2) \Big)}^{k-1} \! + \! \mathbf{P}(2) \! \cdot \! \dfrac{1 \! - \! {\Big( -\mathbf{P}(2) \Big)}^{k-2}}{1 \! + \! \mathbf{P}(2)} \quad \underset{k \rightarrow \infty}{\longrightarrow} \quad \dfrac{\mathbf{P}(2)}{1 \! + \! \mathbf{P}(2)} \]
 Для $ 3 $-й заявки:
 \[ \mathbf{P}(3) \, = \, (1 \! - \! 0.6) \! \cdot \! 0.6 \, = \, 0.24 \]
-Для $ 2 $-й заявки:
+Для $ 4 $-й заявки:
 \[ \mathbf{P}(4) \, = \, (1 \! - \! 0.24) \! \cdot \! 0.6 \, = \, 0.456 \]
 \subsection*{Ответ}
 \begin{equation*}
@@ -113,7 +112,8 @@ Calculate $ \mathbf{P} (k) $ for $ k \! = \! 2,3,4 $ and find $ \mathbf{P} (k) $
 & \mathbf{P}(2) \! = \! 0.6 \\
 & \mathbf{P}(3) \! = \! 0.24 \\
 & \mathbf{P}(4) \! = \! 0.456 \\
-& \mathbf{P}(k) \! = \! \Big( 1 \! - \! \mathbf{P}(k \! - \! 1) \Big) \! \cdot \! \mathbf{P} (2) \quad \forall k \! \geqslant \! 3 \\
+& \mathbf{P}(k) \! = \! \Big( 1 \! - \! \mathbf{P}(k \! - \! 1) \Big) \! \cdot \! \mathbf{P} (2) \, = \, -{\Big( -\mathbf{P}(2) \Big)}^{k-1} \! + \! \mathbf{P}(2) \! \cdot \! \dfrac{1 \! - \! {\Big( -\mathbf{P}(2) \Big)}^{k-2}}{1 \! + \! \mathbf{P}(2)} \quad \forall k \! \geqslant \! 3 \\
+& \mathbf{P} ( \infty ) \, = \, \dfrac{\mathbf{P}(2)}{1 \! + \! \mathbf{P}(2)} \, = \, 0.375
 \end{aligned}
 \right.
 \end{equation*}
